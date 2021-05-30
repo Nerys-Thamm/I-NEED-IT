@@ -11,6 +11,7 @@ public class Movement_Normal : MonoBehaviour
     public Transform Camera;
 
     Vector2 moveVal;
+    Vector3 direction;
 
     void OnMove(InputValue value)
     {
@@ -38,8 +39,14 @@ public class Movement_Normal : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        var direction = forward * moveVal.y + right * moveVal.x;
+        direction = forward * moveVal.y + right * moveVal.x;
 
         transform.Translate(direction * Time.deltaTime * speedmult);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position + (direction * speedmult));
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class CameraTrigger : MonoBehaviour
 {
     public CinemachineVirtualCamera Camera;
-    
+    public Color GizmoColor;
     
 
     private void OnTriggerEnter(Collider other)
@@ -15,15 +15,19 @@ public class CameraTrigger : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Camera.MoveToTopOfPrioritySubqueue();
-            //input.SwitchCurrentActionMap(actionmapname);
+            
         }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = new Color(1, 0, 1, 0.5f);
+        GizmoColor.a = 0.2f;
+        Gizmos.color = GizmoColor;
         Gizmos.DrawCube(transform.position, this.gameObject.GetComponent<BoxCollider>().bounds.extents*2);
-           
+        GizmoColor.a = 0.8f;
+        Gizmos.color = GizmoColor;
+        Gizmos.DrawSphere(Camera.transform.position, 1);
+        
     }
 
     private void OnTriggerExit(Collider other)
