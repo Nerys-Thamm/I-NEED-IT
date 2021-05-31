@@ -5,14 +5,18 @@ using UnityEngine.InputSystem;
 
 public class Movement_Normal : MonoBehaviour
 {
-    [Range(0, 10)]
-    public float speedmult;
+    [Range(1, 10)]
+    public float speed_mult;
+
+    [Range(1, 50)]
+    public float camera_rotate_sensitivity;
 
     public Transform Camera;
+    public Transform FollowCam;
 
     Vector2 moveVal;
     Vector3 direction;
-
+    float cameraangledelta;
     void OnMove(InputValue value)
     {
         moveVal = value.Get<Vector2>();
@@ -21,6 +25,11 @@ public class Movement_Normal : MonoBehaviour
     void OnJump()
     {
         this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 500, 0));
+    }
+
+    void OnRotateCamera(InputValue value)
+    {
+        cameraangledelta = value.Get<float>();
     }
 
     // Start is called before the first frame update
@@ -41,12 +50,13 @@ public class Movement_Normal : MonoBehaviour
 
         direction = forward * moveVal.y + right * moveVal.x;
 
-        transform.Translate(direction * Time.deltaTime * speedmult);
+        transform.Translate(direction * Time.deltaTime * speed_mult);
+        FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.magenta;
-        Gizmos.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position + (direction * speedmult));
+        Gizmos.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position + (direction * speed_mult));
     }
 }
