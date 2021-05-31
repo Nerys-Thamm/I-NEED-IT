@@ -293,37 +293,15 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Gamepad",
-                    "id": "3bc02cf1-06ce-44f0-a183-489f772fc9dd",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "d98734f8-d3ff-486d-8b50-330b35d61ff8",
+                    "path": "<Gamepad>/rightStick/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "NormalControlScheme",
                     "action": "RotateCamera",
-                    "isComposite": true,
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "positive",
-                    "id": "d360fa6f-d0b7-4bb7-8590-788f2337e9cc",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "NormalControlScheme",
-                    "action": "RotateCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "negative",
-                    "id": "42154b0d-b194-44f0-9002-fa92d9e3cdba",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "NormalControlScheme",
-                    "action": "RotateCamera",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },

@@ -8,7 +8,7 @@ public class Movement_Normal : MonoBehaviour
     [Range(1, 10)]
     public float speed_mult;
 
-    [Range(1, 50)]
+    [Range(40, 100)]
     public float camera_rotate_sensitivity;
 
     public Transform Camera;
