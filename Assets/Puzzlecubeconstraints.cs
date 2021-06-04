@@ -14,13 +14,17 @@ public class Puzzlecubeconstraints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(body.velocity.x) < 0)
+        float xGrid = ((this.transform.position.x * 10) % 20) / 10;
+        float zGrid = ((this.transform.position.z * 10) % 20) / 10;
+        //Debug.Log(xGrid + " : " + zGrid);
+        body.constraints = RigidbodyConstraints.FreezeRotation;
+        if (xGrid < -0.5f && xGrid > -1.5)
         {
-            body.constraints = RigidbodyConstraints.FreezePositionZ;
+            body.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
         }
-        if (Mathf.Abs(body.velocity.z) < 0)
+        if (zGrid < -0.5f && zGrid > -1.5)
         {
-            body.constraints = RigidbodyConstraints.FreezePositionX;
+            body.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
         }
     }
 }

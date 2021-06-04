@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class Movement_Normal : MonoBehaviour
 {
-    [Range(1, 10)]
+    public Rigidbody body;
+    [Range(1, 1000)]
     public float speed_mult;
 
     [Range(40, 100)]
@@ -50,7 +51,8 @@ public class Movement_Normal : MonoBehaviour
 
         direction = forward * moveVal.y + right * moveVal.x;
 
-        transform.Translate(direction * Time.deltaTime * speed_mult);
+        //transform.Translate(direction * Time.deltaTime * speed_mult);
+        body.AddForce(direction * Time.deltaTime * speed_mult, ForceMode.Force);
         FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
     }
 
