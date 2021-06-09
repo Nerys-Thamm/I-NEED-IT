@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class PathMovementAgent : MonoBehaviour
 {
     public MovementPath m_Path;
+    public bool m_AlwaysMoving = true;
+    bool m_IsMoving;
     public UnityEvent m_OnNodeReach;
     public float m_Speed;
     public float m_distancetonextnode;
@@ -20,6 +22,7 @@ public class PathMovementAgent : MonoBehaviour
         m_nextnode = m_Path.GetNextNode();
         m_direction = (m_nextnode.Position - this.gameObject.transform.position);
         m_distancetonextnode = m_direction.magnitude;
+        m_IsMoving = m_AlwaysMoving;
     }
 
     // Update is called once per frame
@@ -35,8 +38,15 @@ public class PathMovementAgent : MonoBehaviour
             m_distancetonextnode = m_direction.magnitude;
             m_OnNodeReach.Invoke();
         }
-        this.gameObject.transform.position += m_direction.normalized * (m_Speed * m_nextnode.SpeedCurve.Evaluate(1 / m_distancetonextnode)) * Time.deltaTime;
+        if (m_IsMoving)
+        {
+            this.gameObject.transform.position += m_direction.normalized * (m_Speed * m_nextnode.SpeedCurve.Evaluate(1 / m_distancetonextnode)) * Time.deltaTime;
+        }
     }
 
+    public void SetMoving(bool _IsMoving)
+    {
+        m_IsMoving = _IsMoving;
+    }
 
 }
