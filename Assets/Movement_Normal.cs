@@ -5,7 +5,20 @@ using UnityEngine.InputSystem;
 
 public class Movement_Normal : MonoBehaviour
 {
-    public Rigidbody body;
+    public Animator m_Anim;
+    
+    public GameObject m_CharModel;
+    public CharacterController m_Controller;
+    public float m_MoveSpeed;
+    public float m_JumpForce;
+    public float m_GravityForce;
+    public float m_JumpDuration;
+    public AnimationCurve m_JumpCurve;
+    public AnimationCurve m_GravityCurve;
+    float m_CurrentJumpDuration = 0;
+    float m_ModifiedMoveSpeed;
+
+    
     [Range(1, 1000)]
     public float speed_mult;
 
@@ -63,6 +76,7 @@ public class Movement_Normal : MonoBehaviour
         StateMachine.AddAnyTransition(m_highState, () => PickupDrug());
         // Set the Start State to Sober
         StateMachine.SetState(m_soberState);
+
     }
 
 
@@ -73,7 +87,12 @@ public class Movement_Normal : MonoBehaviour
 
     void OnJump()
     {
-        this.GetComponent<Rigidbody>().AddForce(new Vector3(0, 500, 0));
+        if (m_Controller.isGrounded)
+        {
+            m_CurrentJumpDuration = m_JumpDuration;
+            m_Anim.SetTrigger("OnJump");
+        }
+        
     }
 
     void OnRotateCamera(InputValue value)
@@ -84,7 +103,11 @@ public class Movement_Normal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_CurrentJumpDuration -= Time.deltaTime;
         StateMachine.Tick();
+        m_ModifiedMoveSpeed = m_MoveSpeed * StateMachine.SpeedMultiplier();
+
+
 
         var forward = Camera.forward;
         var right = Camera.right;
@@ -93,12 +116,32 @@ public class Movement_Normal : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        direction = forward * moveVal.y + right * moveVal.x;
-
-        Debug.Log(speed_mult + " : " + StateMachine.SpeedMultiplier());
-        //transform.Translate(direction * Time.deltaTime * speed_mult);
-        body.AddForce(direction * Time.deltaTime * (speed_mult * StateMachine.SpeedMultiplier()), ForceMode.Force);
+        direction = Vector3.Lerp(direction, (forward * moveVal.y + right * moveVal.x), Time.deltaTime * 5.0f);
+        direction = direction.normalized * (forward * moveVal.y + right * moveVal.x).magnitude;
+        Vector3 dirwithvertical = direction * m_ModifiedMoveSpeed;
+        dirwithvertical.y = (m_GravityCurve.Evaluate(m_CurrentJumpDuration / m_JumpDuration) * -m_GravityForce) + (m_JumpCurve.Evaluate(m_CurrentJumpDuration / m_JumpDuration) * m_JumpForce);
+        //Debug.Log(speed_mult + " : " + StateMachine.SpeedMultiplier());
+        
+        //body.AddForce(direction * Time.deltaTime * (speed_mult * StateMachine.SpeedMultiplier()), ForceMode.Force);
+        m_Controller.Move(dirwithvertical  * Time.deltaTime);
+        if (moveVal.magnitude > 0)
+        {
+            m_CharModel.transform.rotation = Quaternion.RotateTowards(m_CharModel.transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 300);
+        }
+        
         FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
+
+        if(direction.magnitude > 0.06 && m_Controller.isGrounded)
+        {
+            m_Anim.speed = (m_ModifiedMoveSpeed / 2.6f) * direction.magnitude;
+        }
+        else
+        {
+            m_Anim.speed = 1.0f;
+        }
+        m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
+        m_Anim.SetBool("IsRunning", m_ModifiedMoveSpeed > m_MoveSpeed);
+        m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
     }
 
     private void OnDrawGizmos()
