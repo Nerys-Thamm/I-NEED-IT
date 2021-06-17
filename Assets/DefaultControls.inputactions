@@ -36,6 +36,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "EasterEgg",
+                    "type": "Button",
+                    "id": "a6e27b74-5d84-4162-933a-561359f31abe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -300,6 +308,17 @@
                     "processors": "",
                     "groups": "NormalControlScheme",
                     "action": "RotateCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4b4b5ca-7e83-45fc-b325-8c5b2853ef2a",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "EasterEgg",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
