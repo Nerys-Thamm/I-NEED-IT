@@ -42,9 +42,9 @@ public class MovementPath : MonoBehaviour
         }
     }
 
-    public PathNode GetNode()
+    public PathNode GetNode(int _index)
     {
-        return m_Path[m_index];
+        return m_Path[_index];
     }
     public PathNode GetNextNode()
     {
