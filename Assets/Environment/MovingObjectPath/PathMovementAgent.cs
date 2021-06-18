@@ -9,15 +9,17 @@ public class PathMovementAgent : MonoBehaviour
     public bool m_AlwaysMoving = true;
     bool m_IsMoving;
     public UnityEvent m_OnNodeReach;
+    public UnityEvent m_OnReachStartNode;
     public float m_Speed;
     public float m_distancetonextnode;
     Vector3 m_direction;
     MovementPath.PathNode m_currentnode;
     MovementPath.PathNode m_nextnode;
+    float m_timer = 0;
     // Start is called before the first frame update
     void Start()
     {
-        m_currentnode = m_Path.GetNode();
+        m_currentnode = m_Path.GetNode(0);
         this.gameObject.transform.position = m_currentnode.Position;
         m_nextnode = m_Path.GetNextNode();
         m_direction = (m_nextnode.Position - this.gameObject.transform.position);
@@ -28,6 +30,7 @@ public class PathMovementAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_timer -= Time.deltaTime;
         m_direction = (m_nextnode.Position - this.gameObject.transform.position);
         m_distancetonextnode = m_direction.magnitude;
         if (m_distancetonextnode <= 0.05)
@@ -37,8 +40,12 @@ public class PathMovementAgent : MonoBehaviour
             m_direction = (m_nextnode.Position - this.gameObject.transform.position);
             m_distancetonextnode = m_direction.magnitude;
             m_OnNodeReach.Invoke();
+            if(m_currentnode == m_Path.GetNode(0))
+            {
+                m_OnReachStartNode.Invoke();
+            }
         }
-        if (m_IsMoving)
+        if (m_IsMoving && m_timer < 0)
         {
             this.gameObject.transform.position += m_direction.normalized * (m_Speed * m_nextnode.SpeedCurve.Evaluate(1 / m_distancetonextnode)) * Time.deltaTime;
         }
@@ -47,6 +54,11 @@ public class PathMovementAgent : MonoBehaviour
     public void SetMoving(bool _IsMoving)
     {
         m_IsMoving = _IsMoving;
+    }
+
+    public void WaitFor(float _time)
+    {
+        m_timer = _time;
     }
 
 }

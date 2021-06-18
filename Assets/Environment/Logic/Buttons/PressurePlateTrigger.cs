@@ -21,11 +21,15 @@ public class PressurePlateTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger) return;
+        if (other.tag != "Player") return;
         OnPress.Invoke();
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.isTrigger) return;
+        if (other.tag != "Player") return;
         OnRelease.Invoke();
     }
 }
