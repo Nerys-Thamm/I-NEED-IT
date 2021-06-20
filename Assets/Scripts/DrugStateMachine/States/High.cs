@@ -12,6 +12,8 @@ public class High : IState
     // The Timer for being high
     private float T_DurationTimer;
 
+    public int DrugPickedUp = 0;
+
     public High(float SpeedMultiplier, float duration)
     {
         m_MovementSpeedMultiplier = SpeedMultiplier;
@@ -54,4 +56,12 @@ public class High : IState
         return false;
     }
 
+    public bool TransitionToSelf()
+    {
+        return true;
+    }
+    public void SetPickedUpValue(int Value)
+    {
+        DrugPickedUp = Value;
+    }
 }

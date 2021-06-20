@@ -155,6 +155,7 @@ public class Movement_Normal : MonoBehaviour
     {
         if (pickedUp)
         {
+            StateMachine.PickedUp();
             pickedUp = false;
             return true;
         }

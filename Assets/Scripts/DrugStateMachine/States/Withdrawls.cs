@@ -5,7 +5,7 @@ using UnityEngine;
 public class Withdrawls : IState
 {
     // The Number of Times High which is used to decide the severity of symptoms.
-    public int TimesHigh;
+    public int DrugPickedUp;
 
     // The Movement Speed increase/Decrease that the Drug State Gives
     private float minMovementMultiplier;
@@ -31,18 +31,17 @@ public class Withdrawls : IState
         WithdrawlTimeStart = minTime;
         WithdrawlTimeMax = maxTime;
 
-        m_MovementSpeedMultiplier = Mathf.Clamp(Rate.Evaluate(TimesHigh), minMovementMultiplier, maxMovemnentMultiplier);
+        m_MovementSpeedMultiplier = Mathf.Clamp(Rate.Evaluate(DrugPickedUp), minMovementMultiplier, maxMovemnentMultiplier);
     }
 
     public void OnEnter()
     {
-        TimesHigh += 1;
-
-        WithdrawlTimer = Mathf.Clamp(TimesHigh * WithdrawlTimeStart, WithdrawlTimeStart, WithdrawlTimeMax);
+        WithdrawlTimer = Mathf.Clamp(DrugPickedUp * WithdrawlTimeStart, WithdrawlTimeStart, WithdrawlTimeMax);
         WithdrawlCurrentTimer = 0.0f;
 
-        m_MovementSpeedMultiplier = Mathf.Clamp(RateOfWithdrawl.Evaluate(TimesHigh), minMovementMultiplier, maxMovemnentMultiplier);
+        m_MovementSpeedMultiplier = Mathf.Clamp(RateOfWithdrawl.Evaluate(DrugPickedUp), minMovementMultiplier, maxMovemnentMultiplier);
         Debug.Log("STATE: WITHDRAWL");
+        Debug.Log(DrugPickedUp);
     }
 
     public void OnExit()
@@ -69,5 +68,15 @@ public class Withdrawls : IState
             return true;
         }
         return false;
+    }
+
+    public bool TransitionToSelf()
+    {
+        return false;
+    }
+
+    public void SetPickedUpValue(int Value)
+    {
+        DrugPickedUp = Value;
     }
 }

@@ -17,4 +17,7 @@ public interface IState
 
     float getMovementMultiplier();
 
+    void SetPickedUpValue(int Value);
+
+    bool TransitionToSelf();
 }

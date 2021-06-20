@@ -19,6 +19,8 @@ public class DrugStateMachine
     // An Empty List of Transitions used if there is no available transitions
     private static List<Transition> listEmptyTransitions = new List<Transition>();
 
+    public int TimesPickedUp = 0;
+
     // The Tick Function for the State
     // Checks if there is a transition available and if so, does the transition
     // Otherwise does the Tick function for the State
@@ -42,7 +44,8 @@ public class DrugStateMachine
     {
         // If the current State is the one we are trying to set to,
         // Just Return instead of resetting the state
-        if (state == m_CurrentDrugState)
+        // Checks if the state is allowed to transition to itself.
+        if (state == m_CurrentDrugState && !state.TransitionToSelf())
         {
             return;
         }
@@ -50,7 +53,8 @@ public class DrugStateMachine
         // Uses the Null-Conditional Operator "?." to not cause issues if the state does not have a Defined OnExit()
         m_CurrentDrugState?.OnExit();
         m_CurrentDrugState = state;
-        
+
+        m_CurrentDrugState.SetPickedUpValue(TimesPickedUp);
         // Get the Transitions for this state from the Dictionary and store it in the current transitions
         dictionaryTransitions.TryGetValue(m_CurrentDrugState.GetType(), out listCurrentTransitions);
         // Null Check to ensure there is no issues
@@ -66,6 +70,11 @@ public class DrugStateMachine
     public float SpeedMultiplier()
     {
         return m_CurrentDrugState.getMovementMultiplier();
+    }
+
+    public void PickedUp()
+    {
+        TimesPickedUp += 1;
     }
 
     // Add a new State from One State to Another using a Predicate Function
@@ -90,7 +99,6 @@ public class DrugStateMachine
         // Add the State to the List of Any Transitions.
         listAnyTransitions.Add(new Transition(state, predicate));
     }
-
 
     /// <summary>
     /// A Class to handle the Transitions from one state to another
