@@ -68,7 +68,7 @@ public class Withdrawls : IState
         m_MovementSpeedMultiplier = Mathf.Clamp((DefaultMovement * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp))) / DefaultMovement, minMovementMultiplier, maxMovemnentMultiplier);
 
 
-        DirectionalLight.intensity = Mathf.Clamp((DefaultIntensity * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp))) / DefaultIntensity, 1000, DefaultIntensity);
+        DirectionalLight.intensity = Mathf.Clamp(DefaultIntensity * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp)), 1000, DefaultIntensity);
 
         vignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), DefaultVignette, 0.9f);
         
@@ -78,7 +78,8 @@ public class Withdrawls : IState
 
     public void OnExit()
     {
-        
+        vignette.intensity.value = DefaultVignette;
+        DirectionalLight.intensity = DefaultIntensity; 
     }
 
     public void OnTick()

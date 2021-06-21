@@ -17,8 +17,8 @@ public class High : IState
     private Camera cam;
 
 
-    float DefaultVignette;
-    Vignette vignette;
+    ColorAdjustments colorAdjustments;
+    ChromaticAberration chromatic;
     Volume CameraVolume;
     VolumeProfile profile;
 
@@ -40,22 +40,24 @@ public class High : IState
         // The Camera Effects
         CameraVolume = cam.GetComponent<Volume>();
         profile = CameraVolume.profile;
-        profile.TryGet<Vignette>(out vignette);
 
-        DefaultVignette = vignette.intensity.value;
+        profile.TryGet<ChromaticAberration>(out chromatic);
+
+        profile.TryGet<ColorAdjustments>(out colorAdjustments);
     }
 
     public void OnEnter()
     {
-        directionalLight.intensity = DefaultIntensity;
-        vignette.intensity.value = DefaultVignette;
+        colorAdjustments.saturation.value = 60.0f;
+        chromatic.intensity.overrideState = true;
         T_DurationTimer = 0.0f;
         Debug.Log("STATE: HIGH");
     }
 
     public void OnExit()
     {
-        
+        colorAdjustments.saturation.value = 8.0f;
+        chromatic.intensity.overrideState = false;
     }
 
     public void OnTick()
