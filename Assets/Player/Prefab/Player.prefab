@@ -225,6 +225,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   speed_mult: 640
   camera_rotate_sensitivity: 75.8
+  Cam: {fileID: 0}
   Camera: {fileID: 0}
   FollowCam: {fileID: 7887392143708051216}
   SoberMovementMultiplier: 1
@@ -237,27 +238,44 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
-      outSlope: -0.05
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 10
-      value: 0.5
-      inSlope: -0.05
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
+    - serializedVersion: 3
+      time: 1.057085
+      value: 0.031623162
+      inSlope: -0.0017616868
+      outSlope: -0.0017616868
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.7720418
+      value: 0.054151434
+      inSlope: 0.012580668
+      outSlope: 0.012580668
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 1
+      inSlope: 0.327781
+      outSlope: 0.327781
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.111636445
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  WithdrawlTimeStartLength: 1
-  WithdrawlTimeMaxLength: 10
+  DirectionalLight: {fileID: 0}
   pickedUp: 0
 --- !u!23 &7887392144174810024
 MeshRenderer:

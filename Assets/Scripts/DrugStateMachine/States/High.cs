@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class High : IState
 {
@@ -14,18 +16,39 @@ public class High : IState
 
     private Camera cam;
 
+
+    float DefaultVignette;
+    Vignette vignette;
+    Volume CameraVolume;
+    VolumeProfile profile;
+
+    Light directionalLight;
+    float DefaultIntensity;
+
     public int DrugPickedUp = 0;
 
-    public High(float SpeedMultiplier, float duration, Camera playerCam)
+    public High(Camera playerCam, Light DirectLight, float SpeedMultiplier, float duration)
     {
+        directionalLight = DirectLight;
+        DefaultIntensity = directionalLight.intensity;
+
         m_MovementSpeedMultiplier = SpeedMultiplier;
         m_Duration = duration;
 
         cam = playerCam;
+
+        // The Camera Effects
+        CameraVolume = cam.GetComponent<Volume>();
+        profile = CameraVolume.profile;
+        profile.TryGet<Vignette>(out vignette);
+
+        DefaultVignette = vignette.intensity.value;
     }
 
     public void OnEnter()
     {
+        directionalLight.intensity = DefaultIntensity;
+        vignette.intensity.value = DefaultVignette;
         T_DurationTimer = 0.0f;
         Debug.Log("STATE: HIGH");
     }

@@ -50,8 +50,7 @@ public class Movement_Normal : MonoBehaviour
     public float WithdrawlMinMovement = 0.5f;
     public float WithdrawlMaxMovement = 1.0f;
     public AnimationCurve WithdrawlRate = AnimationCurve.Linear(0.0f, 1.0f, 10.0f, 0.5f);
-    public float WithdrawlTimeStartLength = 0.5f;
-    public float WithdrawlTimeMaxLength = 5.0f;
+    public Light DirectionalLight;
 
 
     [Header("Pick Up Drug [Testing Purposes]")]
@@ -67,13 +66,13 @@ public class Movement_Normal : MonoBehaviour
 
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
-        m_highState = new High(HighMovemnetMultiplier, HighDuration, Cam);
-        m_withdrawlState = new Withdrawls(WithdrawlMinMovement, WithdrawlMaxMovement, WithdrawlRate, WithdrawlTimeStartLength, WithdrawlTimeMaxLength, Cam);
+        m_highState = new High(Cam, DirectionalLight, HighMovemnetMultiplier, HighDuration);
+        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
         // Add the Transition From Withdrawl to Sober
-        StateMachine.AddTransition(m_withdrawlState, m_soberState, () => m_withdrawlState.ReturnToSober());
+        //StateMachine.AddTransition(m_withdrawlState, m_soberState, () => m_withdrawlState.ReturnToSober());
 
         // Add the Transition From Any State to High [At the moment, it won't go from High to High again upon the Pickup of a new Powerup]
         StateMachine.AddAnyTransition(m_highState, () => PickupDrug());

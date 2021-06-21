@@ -10,6 +10,7 @@ public class Withdrawls : IState
     public int DrugPickedUp;
 
     // The Movement Speed increase/Decrease that the Drug State Gives
+    private float DefaultMovement;
     private float minMovementMultiplier;
     private float maxMovemnentMultiplier;
     private float m_MovementSpeedMultiplier;
@@ -17,61 +18,62 @@ public class Withdrawls : IState
     // The Rate of Withdrawl
     private AnimationCurve RateOfWithdrawal;
 
-    // Timer for handling how long withdrawl lasts for
-    private float WithdrawlTimeStart;
-    private float WithdrawlTimeMax;
-    private float WithdrawlTimer;
-    private float WithdrawlCurrentTimer;
+    private AnimationCurve VignetteCurve;
 
     // Camera Information
     private Camera camera;
-
-
-    float DefaultVignette;
-    Vignette vignette;
     Volume CameraVolume;
     VolumeProfile profile;
 
+    // Vignette
+    float DefaultVignette;
+    Vignette vignette;
+    
+    // Saturation
+
+    // Directional Light
+    Light DirectionalLight;
+    float DefaultIntensity;
+
     // Constructor that sets all the variables
-    public Withdrawls(float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
+    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
     {
-        minMovementMultiplier = minMultiplier;
-        maxMovemnentMultiplier = maxMultiplier;
+        // Apply The Movement Values
+        DefaultMovement = defaultMovement;
+        minMovementMultiplier = minMove;
+        maxMovemnentMultiplier = maxMove;
+        // Apply the Withdrawal Rate
         RateOfWithdrawal = Rate;
-
-        WithdrawlTimeStart = minTime;
-        WithdrawlTimeMax = maxTime;
-
-        m_MovementSpeedMultiplier = Mathf.Clamp(Rate.Evaluate(DrugPickedUp), minMovementMultiplier, maxMovemnentMultiplier);
-
+        // Store the Camera
         camera = playerCam;
 
+        this.DirectionalLight = DirectionalLight;
+        DefaultIntensity = DirectionalLight.intensity;
+
+        // The Camera Effects
         CameraVolume = camera.GetComponent<Volume>();
         profile = CameraVolume.profile;
-
         profile.TryGet<Vignette>(out vignette);
 
         DefaultVignette = vignette.intensity.value;
 
+        VignetteCurve = AnimationCurve.Linear(0.0f, DefaultVignette, 1.0f, 1.0f);
     }
 
     public void OnEnter()
     {
-        WithdrawlTimer = Mathf.Clamp(DrugPickedUp * WithdrawlTimeStart, WithdrawlTimeStart, WithdrawlTimeMax);
-        WithdrawlCurrentTimer = 0.0f;
-
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
 
-        Debug.Log(IntensityValue);
+        Debug.Log(DrugPickedUp);
+        m_MovementSpeedMultiplier = Mathf.Clamp((DefaultMovement * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp))) / DefaultMovement, minMovementMultiplier, maxMovemnentMultiplier);
 
-        m_MovementSpeedMultiplier = Mathf.Clamp(RateOfWithdrawal.Evaluate(DrugPickedUp), minMovementMultiplier, maxMovemnentMultiplier);
 
+        DirectionalLight.intensity = Mathf.Clamp((DefaultIntensity * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp))) / DefaultIntensity, 1000, DefaultIntensity);
 
-        //vignette.intensity.value = 
-
+        vignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), DefaultVignette, 0.9f);
+        
         CameraVolume.sharedProfile = profile;
         Debug.Log("STATE: WITHDRAWL");
-        //Debug.Log(DrugPickedUp);
     }
 
     public void OnExit()
@@ -81,22 +83,16 @@ public class Withdrawls : IState
 
     public void OnTick()
     {
-        WithdrawlCurrentTimer += Time.deltaTime;
     }
 
     public float getMovementMultiplier()
     {
-        return (m_MovementSpeedMultiplier );
+        return (m_MovementSpeedMultiplier);
     }
 
-    // Returns true for when the timer is up
-    // Used in the Transition
+    // A transition to return to sober. Currently not used.
     public bool ReturnToSober()
     {
-        if (WithdrawlCurrentTimer >= WithdrawlTimer)
-        {
-            return true;
-        }
         return false;
     }
 
