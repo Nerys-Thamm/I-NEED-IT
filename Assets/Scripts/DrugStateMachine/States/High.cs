@@ -12,12 +12,16 @@ public class High : IState
     // The Timer for being high
     private float T_DurationTimer;
 
+    private Camera cam;
+
     public int DrugPickedUp = 0;
 
-    public High(float SpeedMultiplier, float duration)
+    public High(float SpeedMultiplier, float duration, Camera playerCam)
     {
         m_MovementSpeedMultiplier = SpeedMultiplier;
         m_Duration = duration;
+
+        cam = playerCam;
     }
 
     public void OnEnter()

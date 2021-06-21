@@ -25,6 +25,7 @@ public class Movement_Normal : MonoBehaviour
     [Range(40, 100)]
     public float camera_rotate_sensitivity;
 
+    public Camera Cam;
     public Transform Camera;
     public Transform FollowCam;
 
@@ -59,13 +60,15 @@ public class Movement_Normal : MonoBehaviour
     // Awake to Setup the State Machine
     private void Awake()
     {
+        Cam = UnityEngine.Camera.main;
+
         // Creates the State Machine
         StateMachine = new DrugStateMachine();
 
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
-        m_highState = new High(HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlMinMovement, WithdrawlMaxMovement, WithdrawlRate, WithdrawlTimeStartLength, WithdrawlTimeMaxLength);
+        m_highState = new High(HighMovemnetMultiplier, HighDuration, Cam);
+        m_withdrawlState = new Withdrawls(WithdrawlMinMovement, WithdrawlMaxMovement, WithdrawlRate, WithdrawlTimeStartLength, WithdrawlTimeMaxLength, Cam);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class Withdrawls : IState
 {
@@ -13,7 +15,7 @@ public class Withdrawls : IState
     private float m_MovementSpeedMultiplier;
 
     // The Rate of Withdrawl
-    private AnimationCurve RateOfWithdrawl;
+    private AnimationCurve RateOfWithdrawal;
 
     // Timer for handling how long withdrawl lasts for
     private float WithdrawlTimeStart;
@@ -21,17 +23,36 @@ public class Withdrawls : IState
     private float WithdrawlTimer;
     private float WithdrawlCurrentTimer;
 
+    // Camera Information
+    private Camera camera;
+
+
+    float DefaultVignette;
+    Vignette vignette;
+    Volume CameraVolume;
+    VolumeProfile profile;
+
     // Constructor that sets all the variables
-    public Withdrawls(float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime)
+    public Withdrawls(float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
     {
         minMovementMultiplier = minMultiplier;
         maxMovemnentMultiplier = maxMultiplier;
-        RateOfWithdrawl = Rate;
+        RateOfWithdrawal = Rate;
 
         WithdrawlTimeStart = minTime;
         WithdrawlTimeMax = maxTime;
 
         m_MovementSpeedMultiplier = Mathf.Clamp(Rate.Evaluate(DrugPickedUp), minMovementMultiplier, maxMovemnentMultiplier);
+
+        camera = playerCam;
+
+        CameraVolume = camera.GetComponent<Volume>();
+        profile = CameraVolume.profile;
+
+        profile.TryGet<Vignette>(out vignette);
+
+        DefaultVignette = vignette.intensity.value;
+
     }
 
     public void OnEnter()
@@ -39,9 +60,18 @@ public class Withdrawls : IState
         WithdrawlTimer = Mathf.Clamp(DrugPickedUp * WithdrawlTimeStart, WithdrawlTimeStart, WithdrawlTimeMax);
         WithdrawlCurrentTimer = 0.0f;
 
-        m_MovementSpeedMultiplier = Mathf.Clamp(RateOfWithdrawl.Evaluate(DrugPickedUp), minMovementMultiplier, maxMovemnentMultiplier);
+        float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
+
+        Debug.Log(IntensityValue);
+
+        m_MovementSpeedMultiplier = Mathf.Clamp(RateOfWithdrawal.Evaluate(DrugPickedUp), minMovementMultiplier, maxMovemnentMultiplier);
+
+
+        //vignette.intensity.value = 
+
+        CameraVolume.sharedProfile = profile;
         Debug.Log("STATE: WITHDRAWL");
-        Debug.Log(DrugPickedUp);
+        //Debug.Log(DrugPickedUp);
     }
 
     public void OnExit()
