@@ -6,6 +6,7 @@ public class CubeHolder : MonoBehaviour
 {
     CubeHover m_cube;
     public float m_pickuprange;
+    public float m_carryrange;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,14 @@ public class CubeHolder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (m_cube != null)
+        {
+            if((m_cube.gameObject.transform.position - transform.position).magnitude > m_carryrange)
+            {
+                m_cube.ToggleFloating();
+                m_cube = null;
+            }
+        }
     }
 
     void OnAction()
