@@ -93,4 +93,9 @@ public class High : IState
     {
         DrugPickedUp = Value;
     }
+
+    public bool CanSprint()
+    {
+        return true;
+    }
 }

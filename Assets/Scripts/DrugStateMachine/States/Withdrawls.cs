@@ -106,4 +106,9 @@ public class Withdrawls : IState
     {
         DrugPickedUp = Value;
     }
+
+    public bool CanSprint()
+    {
+        return false;
+    }
 }

@@ -77,6 +77,11 @@ public class DrugStateMachine
         TimesPickedUp += 1;
     }
 
+    public bool CanSprint()
+    {
+        return m_CurrentDrugState.CanSprint();
+    }
+
     // Add a new State from One State to Another using a Predicate Function
     public void AddTransition(IState from, IState to, System.Func<bool> predicate)
     {

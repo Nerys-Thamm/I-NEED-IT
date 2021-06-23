@@ -43,4 +43,9 @@ public class Sober : IState
     {
        DrugPickedUp = Value;
     }
+
+    public bool CanSprint()
+    {
+        return false;
+    }
 }

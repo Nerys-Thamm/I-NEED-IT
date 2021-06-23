@@ -19,5 +19,7 @@ public interface IState
 
     void SetPickedUpValue(int Value);
 
+    bool CanSprint();
+
     bool TransitionToSelf();
 }
