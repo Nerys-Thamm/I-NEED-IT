@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class Movement_Normal : MonoBehaviour
 {
     public Animator m_Anim;
-    
+    public AudioSource m_footstepaudio;
+
     public GameObject m_CharModel;
     public CharacterController m_Controller;
     public float m_MoveSpeed;
