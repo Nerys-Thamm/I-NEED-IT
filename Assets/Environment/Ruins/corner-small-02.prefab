@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 7834194898109261061}
   - component: {fileID: 4040587138695132077}
   - component: {fileID: 5876489675649461316}
+  - component: {fileID: 4902471269846793580}
   m_Layer: 0
   m_Name: corner_small_2
   m_TagString: Untagged
@@ -110,3 +111,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &4902471269846793580
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531066510451083935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1302475676661055451, guid: af431df37eebf284c9fa9a6f3e204289, type: 3}
