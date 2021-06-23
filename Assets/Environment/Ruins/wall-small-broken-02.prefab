@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2037837046133965717}
   - component: {fileID: 4232616074570271582}
   - component: {fileID: 8907048131556963329}
+  - component: {fileID: 7568581532567047631}
   m_Layer: 0
   m_Name: wall_small_2
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &7568581532567047631
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3347095081541255815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5549872314348234887, guid: 1e76961609e4bed46b5d7b8d9459c435, type: 3}
 --- !u!1 &5853771327825889181
 GameObject:
   m_ObjectHideFlags: 0
@@ -89,7 +104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6518703924736531751}
   m_Layer: 0
-  m_Name: wall-small-02
+  m_Name: wall-small-broken-02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5841117760740181693}
   - component: {fileID: 8788197142202187940}
   - component: {fileID: 4112318853028233706}
+  - component: {fileID: 956179901659466393}
   m_Layer: 0
   m_Name: rubble_large_3
   m_TagString: Untagged
@@ -79,6 +80,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &956179901659466393
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819458924035471725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 907818207079075937, guid: 109e0f3a4aca6614dace76f2bf078a1d, type: 3}
 --- !u!1 &2983847926263703444
 GameObject:
   m_ObjectHideFlags: 0
