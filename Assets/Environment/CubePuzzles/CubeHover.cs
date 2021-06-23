@@ -39,7 +39,7 @@ public class CubeHover : MonoBehaviour
         }
         if(m_isFloating)
         {
-            m_body.AddForce((m_player.transform.position + (m_maincamera.transform.forward * 5)) - this.transform.position );
+            m_body.AddForce(((m_player.transform.position + (m_maincamera.transform.forward * 5)) - this.transform.position) * m_playerseekforce );
         }
     }
 
