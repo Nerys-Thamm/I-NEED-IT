@@ -222,12 +222,14 @@ GameObject:
   - component: {fileID: 7887392144174810026}
   - component: {fileID: 8478461583409649026}
   - component: {fileID: 7887392144174810025}
+  - component: {fileID: 1343426578122549528}
   - component: {fileID: 7887392144174810030}
   - component: {fileID: 7887392144174810024}
   - component: {fileID: 7887392144174810027}
   - component: {fileID: 7887392144174810028}
   - component: {fileID: 5567205334839231049}
   - component: {fileID: 1039114419440792769}
+  - component: {fileID: 8459776178999002734}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -274,6 +276,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7887392144174810005}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1343426578122549528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887392144174810005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e0f92383330414baba98e99ca4ab52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pickuprange: 10
 --- !u!114 &7887392144174810030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,6 +608,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8459776178999002734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887392144174810005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e0f92383330414baba98e99ca4ab52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_pickuprange: 0
 --- !u!1 &7887392145201161080
 GameObject:
   m_ObjectHideFlags: 0
