@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6935474481216076342}
   - component: {fileID: 6309572622080587155}
   - component: {fileID: 8103362863108997465}
+  - component: {fileID: -4134494704856571190}
   m_Layer: 0
   m_Name: cliff-mossy-04
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &-4134494704856571190
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7742833343646654604}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6329158148709259305, guid: ee9b4e615de10324e931a58eb784ab2e, type: 3}
