@@ -49,7 +49,10 @@ public class High : IState
     public void OnEnter()
     {
         colorAdjustments.saturation.value = 60.0f;
-        chromatic.intensity.overrideState = true;
+        if (chromatic != null)
+        {
+            chromatic.intensity.overrideState = true;
+        }
         T_DurationTimer = 0.0f;
         Debug.Log("STATE: HIGH");
     }
