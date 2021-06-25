@@ -7,7 +7,13 @@ public class AudioTrigger : MonoBehaviour
 {
     public UnityEvent m_OnTrigger;
 
+    public float m_waittime;
+
+    float m_currentwaittime;
+
     bool m_CanBeTriggered = true;
+
+    bool m_played = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +23,19 @@ public class AudioTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        m_currentwaittime -= Time.deltaTime;
+        if(m_currentwaittime <= 0 && !m_played)
+        {
+            m_OnTrigger.Invoke();
+            m_played = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && m_CanBeTriggered)
         {
-            m_OnTrigger.Invoke();
+            m_currentwaittime = m_waittime;
             m_CanBeTriggered = false;
         }
     }
