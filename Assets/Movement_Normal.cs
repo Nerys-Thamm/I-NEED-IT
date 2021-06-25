@@ -143,7 +143,7 @@ public class Movement_Normal : MonoBehaviour
             m_Anim.speed = 1.0f;
         }
         m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
-        m_Anim.SetBool("IsRunning", m_ModifiedMoveSpeed > m_MoveSpeed);
+        m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
         m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
     }
 
@@ -164,5 +164,4 @@ public class Movement_Normal : MonoBehaviour
         }
         return false;
     }
-
 }

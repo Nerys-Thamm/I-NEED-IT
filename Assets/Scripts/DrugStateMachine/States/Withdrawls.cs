@@ -65,7 +65,7 @@ public class Withdrawls : IState
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
 
         Debug.Log(DrugPickedUp);
-        m_MovementSpeedMultiplier = Mathf.Clamp((DefaultMovement * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp))) / DefaultMovement, minMovementMultiplier, maxMovemnentMultiplier);
+        m_MovementSpeedMultiplier = Mathf.Clamp((1 - RateOfWithdrawal.Evaluate(DrugPickedUp) / 2), minMovementMultiplier, maxMovemnentMultiplier);
 
 
         DirectionalLight.intensity = Mathf.Clamp(DefaultIntensity * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp)), 1000, DefaultIntensity);
