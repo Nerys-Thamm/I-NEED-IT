@@ -24,7 +24,7 @@ public class AudioTrigger : MonoBehaviour
     void Update()
     {
         m_currentwaittime -= Time.deltaTime;
-        if(m_currentwaittime <= 0 && !m_played)
+        if(m_currentwaittime <= 0 && !m_played && m_CanBeTriggered == false)
         {
             m_OnTrigger.Invoke();
             m_played = true;
