@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5306722890734420915}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerDeathPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 3572859781565234956}
   - component: {fileID: 2207598612370575952}
   - component: {fileID: 4879682411435416552}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5604,7 +5604,7 @@ GameObject:
   - component: {fileID: 8711811119487280440}
   - component: {fileID: 4264868089039168627}
   - component: {fileID: 2769783176293565753}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GolemDeathPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10493,10 +10493,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -78616150929545003, guid: e158c78954e09a7469fc90d35fa217cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e158c78954e09a7469fc90d35fa217cc,
         type: 3}
       propertyPath: m_Name
       value: GolemPart12
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e158c78954e09a7469fc90d35fa217cc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4204473645785525967, guid: e158c78954e09a7469fc90d35fa217cc,
         type: 3}
@@ -10585,6 +10595,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2236649678199001888, guid: 7f8466454fc6e2d44b89d0c2114a48c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 392617304296371231, guid: 7f8466454fc6e2d44b89d0c2114a48c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10594,6 +10609,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart17
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7f8466454fc6e2d44b89d0c2114a48c4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f8466454fc6e2d44b89d0c2114a48c4, type: 3}
@@ -10687,6 +10707,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart25
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 736e67a443fe17f41bfc3d367f3c212d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955542301532487857, guid: 736e67a443fe17f41bfc3d367f3c212d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 736e67a443fe17f41bfc3d367f3c212d, type: 3}
 --- !u!1 &8369935371472589331 stripped
@@ -10773,6 +10803,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart15
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b2dc337249feaed4eb94528e0275e0a0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7267407554819534056, guid: b2dc337249feaed4eb94528e0275e0a0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8039513470159272911, guid: b2dc337249feaed4eb94528e0275e0a0,
         type: 3}
@@ -10866,6 +10906,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart7
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c0131a5910ee68d418309d016ca6eed1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3238911478103833591, guid: c0131a5910ee68d418309d016ca6eed1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3266462373522579363, guid: c0131a5910ee68d418309d016ca6eed1,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -10958,10 +11008,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5302298609648012942, guid: 53cd0a6be1a5b8e48b57e51bda57ef70,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 53cd0a6be1a5b8e48b57e51bda57ef70,
         type: 3}
       propertyPath: m_Name
       value: GolemPart13
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53cd0a6be1a5b8e48b57e51bda57ef70,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53cd0a6be1a5b8e48b57e51bda57ef70, type: 3}
@@ -11050,11 +11110,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart8
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8b908b3ba339a44b9eef0365556d307,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6149593746132498702, guid: f8b908b3ba339a44b9eef0365556d307,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 167c027dc5de4e14d9b2b628d194eefe, type: 2}
+    - target: {fileID: 6491679457883800854, guid: f8b908b3ba339a44b9eef0365556d307,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8b908b3ba339a44b9eef0365556d307, type: 3}
 --- !u!4 &9181761515134649815 stripped
@@ -11137,10 +11207,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8641458855404507412, guid: 5baf28ca17faf224ca58f29b41445619,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5baf28ca17faf224ca58f29b41445619,
         type: 3}
       propertyPath: m_Name
       value: GolemPart2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5baf28ca17faf224ca58f29b41445619,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8196511452160173533, guid: 5baf28ca17faf224ca58f29b41445619,
         type: 3}
@@ -11229,10 +11309,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -107613332879908676, guid: a75dbbd703bfe26479b765fc86d6c9e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a75dbbd703bfe26479b765fc86d6c9e3,
         type: 3}
       propertyPath: m_Name
       value: GolemPart19
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a75dbbd703bfe26479b765fc86d6c9e3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3177782860208783148, guid: a75dbbd703bfe26479b765fc86d6c9e3,
         type: 3}
@@ -11331,6 +11421,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2d011594498c1c74e82458ce48783959,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677183942046312992, guid: 2d011594498c1c74e82458ce48783959,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d011594498c1c74e82458ce48783959, type: 3}
 --- !u!1 &6755916839820368799 stripped
@@ -11423,6 +11523,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart24
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 338279cae2c206d4eb833a855cae7966,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7377604700656445115, guid: 338279cae2c206d4eb833a855cae7966,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338279cae2c206d4eb833a855cae7966, type: 3}
 --- !u!1 &2198907176290919256 stripped
@@ -11505,6 +11615,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8301261170602319160, guid: 8711b21a86f2eda4ba8328f65c56cd33,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -5786346791587362928, guid: 8711b21a86f2eda4ba8328f65c56cd33,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11514,6 +11629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart18
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8711b21a86f2eda4ba8328f65c56cd33,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8711b21a86f2eda4ba8328f65c56cd33, type: 3}
@@ -11597,6 +11717,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6909863355079700027, guid: dbdce34fdfe985c48802bd762dc1b89d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -1844113544453835421, guid: dbdce34fdfe985c48802bd762dc1b89d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11606,6 +11731,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart22
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dbdce34fdfe985c48802bd762dc1b89d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbdce34fdfe985c48802bd762dc1b89d, type: 3}
@@ -11689,6 +11819,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -649139363054384346, guid: f9026d3067829bf4da2acc04dbe4820d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -607330186604088289, guid: f9026d3067829bf4da2acc04dbe4820d,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11698,6 +11833,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9026d3067829bf4da2acc04dbe4820d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9026d3067829bf4da2acc04dbe4820d, type: 3}
@@ -11781,6 +11921,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7488185447248448750, guid: 4912c51e09b3c6f4db78ab1bc0360c4b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -5404502208165481226, guid: 4912c51e09b3c6f4db78ab1bc0360c4b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11790,6 +11935,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart23
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4912c51e09b3c6f4db78ab1bc0360c4b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4912c51e09b3c6f4db78ab1bc0360c4b, type: 3}
@@ -11883,6 +12033,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart20
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 103939755761b2c459aa72426d89a7bb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6886063951586291643, guid: 103939755761b2c459aa72426d89a7bb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 103939755761b2c459aa72426d89a7bb, type: 3}
 --- !u!1 &8369935370733393968 stripped
@@ -11974,6 +12134,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart11
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e204b01620df2943a8b1b8c1e394e2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8315062735982564084, guid: 1e204b01620df2943a8b1b8c1e394e2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e204b01620df2943a8b1b8c1e394e2c, type: 3}
@@ -12087,6 +12257,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bc7934f44d5894e43948aaa99e8b5c11,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6065922093711850622, guid: bc7934f44d5894e43948aaa99e8b5c11,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc7934f44d5894e43948aaa99e8b5c11, type: 3}
 --- !u!1 &8369935370833102633 stripped
@@ -12173,6 +12353,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart5
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 13d16544fe69226469866c31980717c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2914421664310470537, guid: 13d16544fe69226469866c31980717c1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9191392310056197506, guid: 13d16544fe69226469866c31980717c1,
         type: 3}
@@ -12265,6 +12455,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GolemPart16
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0e36fec27c9568e4cac7094656135799,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2464903756899947029, guid: 0e36fec27c9568e4cac7094656135799,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5845514066982216785, guid: 0e36fec27c9568e4cac7094656135799,
         type: 3}
@@ -12363,6 +12563,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart14
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9197dbcc6221bdb488aca4bc1c620fd5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5738460649584133648, guid: 9197dbcc6221bdb488aca4bc1c620fd5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9197dbcc6221bdb488aca4bc1c620fd5, type: 3}
 --- !u!4 &9181761513497894743 stripped
@@ -12450,11 +12660,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 554c168bb0fcaa44da6ee874304cc353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1439325484474769618, guid: 554c168bb0fcaa44da6ee874304cc353,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 167c027dc5de4e14d9b2b628d194eefe, type: 2}
+    - target: {fileID: 5390150804646238363, guid: 554c168bb0fcaa44da6ee874304cc353,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 554c168bb0fcaa44da6ee874304cc353, type: 3}
 --- !u!1 &8369935370211946355 stripped
@@ -12537,10 +12757,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -162200415724321967, guid: 51d7539acad856b42833181de170b953,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 51d7539acad856b42833181de170b953,
         type: 3}
       propertyPath: m_Name
       value: GolemPart10
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51d7539acad856b42833181de170b953,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5925015535037220655, guid: 51d7539acad856b42833181de170b953,
         type: 3}
@@ -12634,11 +12864,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart9
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d140d855efa8c640a98578f60a9d40b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5484330161287787859, guid: 0d140d855efa8c640a98578f60a9d40b,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 167c027dc5de4e14d9b2b628d194eefe, type: 2}
+    - target: {fileID: 7694325423091138398, guid: 0d140d855efa8c640a98578f60a9d40b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d140d855efa8c640a98578f60a9d40b, type: 3}
 --- !u!1 &8369935370138237401 stripped
@@ -12726,11 +12966,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: GolemPart21
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2c6412273cfd5ed468d07f14ce7bc4a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6210738188259866013, guid: 2c6412273cfd5ed468d07f14ce7bc4a7,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 167c027dc5de4e14d9b2b628d194eefe, type: 2}
+    - target: {fileID: 8505668122993106427, guid: 2c6412273cfd5ed468d07f14ce7bc4a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c6412273cfd5ed468d07f14ce7bc4a7, type: 3}
 --- !u!1 &1075417040361587878 stripped

@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class Movement_Normal : MonoBehaviour
 {
     public Animator m_Anim;
-    public AudioSource m_footstepaudio;
 
     public GameObject m_CharModel;
     public CharacterController m_Controller;
@@ -29,9 +28,15 @@ public class Movement_Normal : MonoBehaviour
 
     public bool CanMove = false;
 
+    [Header("Camera Settings:")]
     public Camera Cam;
     public Transform Camera;
     public Transform FollowCam;
+
+    [Header("Respawning:")]
+    public bool HasDied = false;
+    public GameObject DeathPrefab;
+    public Transform RespawnLocation;
 
     Vector2 moveVal;
     Vector3 direction;
@@ -125,7 +130,8 @@ public class Movement_Normal : MonoBehaviour
         {
             m_ModifiedMoveSpeed = m_MoveSpeed + StateMachine.SpeedMultiplier();
         }
-        
+
+        FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
 
         if (CanMove)
         {
@@ -150,7 +156,7 @@ public class Movement_Normal : MonoBehaviour
                 m_CharModel.transform.rotation = Quaternion.RotateTowards(m_CharModel.transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 300);
             }
 
-            FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
+            
 
             if (direction.magnitude > 0.06 && m_Controller.isGrounded)
             {
@@ -163,6 +169,11 @@ public class Movement_Normal : MonoBehaviour
             m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
             m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
             m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
+
+            if (HasDied)
+            {
+                Die();
+            }
         }
     }
 
@@ -182,5 +193,29 @@ public class Movement_Normal : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+
+    public void Die()
+    {
+        CanMove = false;
+        m_CharModel.SetActive(false);
+        GameObject obj = Instantiate(DeathPrefab, transform.position, transform.rotation);
+
+        StartCoroutine(DelayRespawn(5.0f, obj));
+    }
+
+
+    IEnumerator DelayRespawn(float time, GameObject DeathPrefab)
+    {
+        yield return new WaitForSeconds(time);
+
+        Object.Destroy(DeathPrefab);
+        m_CharModel.SetActive(true);
+
+        transform.position = RespawnLocation.position;
+        transform.rotation = Quaternion.identity;
+        HasDied = false;
+        CanMove = true;
     }
 }

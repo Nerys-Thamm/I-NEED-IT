@@ -115,6 +115,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4512944294987483786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678895940255499472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3aff9a96b75b242be98ba86eb068f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7887392144174810030}
 --- !u!114 &7141749937175141626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,19 +142,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   as_Footstep: {fileID: 116396454069801314}
   ac_FootstepClip: {fileID: 8300000, guid: 70e0af9c5a6c3cc438818a9b35a62ce1, type: 3}
---- !u!114 &4512944294987483786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3678895940255499472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a3aff9a96b75b242be98ba86eb068f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7887392144174810030}
 --- !u!1 &6440139309267723107
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +475,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Anim: {fileID: 6565332529821774801}
-  m_footstepaudio: {fileID: 0}
   m_CharModel: {fileID: 3678895940255499472}
   m_Controller: {fileID: 5567205334839231049}
   m_MoveSpeed: 4
@@ -536,6 +535,10 @@ MonoBehaviour:
   Cam: {fileID: 0}
   Camera: {fileID: 0}
   FollowCam: {fileID: 7887392143708051216}
+  HasDied: 0
+  DeathPrefab: {fileID: 265141529123982548, guid: 738c12828ecd8b44f8d0c5f163c4ef38,
+    type: 3}
+  RespawnLocation: {fileID: 0}
   SoberMovementMultiplier: 1
   HighMovemnetMultiplier: 2
   HighDuration: 5
