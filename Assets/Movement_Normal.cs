@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class Movement_Normal : MonoBehaviour
 {
     public Animator m_Anim;
+    public AudioSource Audio;
+    public AudioClip DeathAudio;
 
     public GameObject m_CharModel;
     public CharacterController m_Controller;
@@ -199,6 +201,8 @@ public class Movement_Normal : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
+
+        Audio.PlayOneShot(DeathAudio);
 
         StartCoroutine(DelayRespawn(5.0f, obj));
     }

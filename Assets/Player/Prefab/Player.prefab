@@ -184,8 +184,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d81058d6f37644b8578ca45d073dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  as_Footstep: {fileID: 116396454069801314}
+  audioSource: {fileID: 116396454069801314}
   ac_FootstepClip: {fileID: 8300000, guid: 70e0af9c5a6c3cc438818a9b35a62ce1, type: 3}
+  ac_LandingClip: {fileID: 8300000, guid: e2e2d32a26039fd459419fca59177d8b, type: 3}
+  ac_JumpingClip: {fileID: 8300000, guid: 38885c013b1e196429ee2821146fba7c, type: 3}
 --- !u!1 &6440139309267723107
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Anim: {fileID: 6565332529821774801}
+  Audio: {fileID: 1039114419440792769}
+  DeathAudio: {fileID: 8300000, guid: 2045dfeda1043b940945f80035a51102, type: 3}
   m_CharModel: {fileID: 3678895940255499472}
   m_Controller: {fileID: 5567205334839231049}
   m_MoveSpeed: 4
