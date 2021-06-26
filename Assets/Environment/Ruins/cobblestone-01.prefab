@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3275982774076005169}
   - component: {fileID: 346237102496327083}
   - component: {fileID: 3665382253206206738}
+  - component: {fileID: 5976457030134272066}
   m_Layer: 0
   m_Name: cobblestone_1
   m_TagString: Untagged
@@ -110,3 +111,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5976457030134272066
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8540409832557443586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8995385, y: 0.4497692, z: 3.8995361}
+  m_Center: {x: 0, y: 0.25, z: 0}
