@@ -20,6 +20,7 @@ public class ExplodeOnHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.isTrigger) return;
         GameObject.Instantiate(m_ExplosionPrefab, this.transform.position, this.transform.rotation);
 
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
