@@ -198,7 +198,7 @@ public class Movement_Normal : MonoBehaviour
         m_CharModel.SetActive(false);
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
-        GameObject obj = Instantiate(DeathPrefab, transform.position, transform.rotation);
+        GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
 
         StartCoroutine(DelayRespawn(5.0f, obj));
     }
@@ -207,13 +207,15 @@ public class Movement_Normal : MonoBehaviour
     IEnumerator DelayRespawn(float time, GameObject DeathPrefab)
     {
         yield return new WaitForSeconds(time);
+
+        transform.position = RespawnLocation.position;
+        transform.rotation = Quaternion.identity;
+
         this.GetComponent<CapsuleCollider>().enabled = true;
         m_Controller.enabled = true;
         Object.Destroy(DeathPrefab);
         m_CharModel.SetActive(true);
 
-        transform.position = RespawnLocation.position;
-        transform.rotation = Quaternion.identity;
         HasDied = false;
         CanMove = true;
     }

@@ -26,7 +26,6 @@ public class ExplodeOnHit : MonoBehaviour
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         //TODO: Code for interaction with entities when hit
         //-------------------------------------------------
-        Debug.Log(other.tag);
         if (other.tag.Equals("PlayerHitBox"))
         {
             Movement_Normal player = other.GetComponentInParent<Movement_Normal>();
