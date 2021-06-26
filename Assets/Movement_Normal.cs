@@ -27,6 +27,8 @@ public class Movement_Normal : MonoBehaviour
     [Range(40, 100)]
     public float camera_rotate_sensitivity;
 
+    public bool CanMove = false;
+
     public Camera Cam;
     public Transform Camera;
     public Transform FollowCam;
@@ -54,7 +56,6 @@ public class Movement_Normal : MonoBehaviour
     public AnimationCurve WithdrawlRate = AnimationCurve.Linear(0.0f, 1.0f, 10.0f, 0.5f);
     public Light DirectionalLight;
 
-
     [Header("Pick Up Drug [Testing Purposes]")]
     public bool pickedUp = false;
 
@@ -81,6 +82,8 @@ public class Movement_Normal : MonoBehaviour
         // Set the Start State to Sober
         StateMachine.SetState(m_soberState);
 
+
+        m_Anim.SetBool("IsGrounded", true);
     }
 
 
@@ -124,41 +127,43 @@ public class Movement_Normal : MonoBehaviour
         }
         
 
-
-
-        var forward = Camera.forward;
-        var right = Camera.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-        direction = Vector3.Lerp(direction, (forward * moveVal.y + right * moveVal.x), Time.deltaTime * 5.0f);
-        direction = direction.normalized * (forward * moveVal.y + right * moveVal.x).magnitude;
-        Vector3 dirwithvertical = direction * m_ModifiedMoveSpeed;
-        dirwithvertical.y = (m_GravityCurve.Evaluate(m_CurrentJumpDuration / m_JumpDuration) * -m_GravityForce) + (m_JumpCurve.Evaluate(m_CurrentJumpDuration / m_JumpDuration) * m_JumpForce);
-        //Debug.Log(speed_mult + " : " + StateMachine.SpeedMultiplier());
-        
-        //body.AddForce(direction * Time.deltaTime * (speed_mult * StateMachine.SpeedMultiplier()), ForceMode.Force);
-        m_Controller.Move(dirwithvertical  * Time.deltaTime);
-        if (moveVal.magnitude > 0)
+        if (CanMove)
         {
-            m_CharModel.transform.rotation = Quaternion.RotateTowards(m_CharModel.transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 300);
-        }
-        
-        FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
 
-        if(direction.magnitude > 0.06 && m_Controller.isGrounded)
-        {
-            m_Anim.speed = (m_ModifiedMoveSpeed / 2.6f) * direction.magnitude;
+            var forward = Camera.forward;
+            var right = Camera.right;
+            forward.y = 0;
+            right.y = 0;
+            forward.Normalize();
+            right.Normalize();
+
+            direction = Vector3.Lerp(direction, (forward * moveVal.y + right * moveVal.x), Time.deltaTime * 5.0f);
+            direction = direction.normalized * (forward * moveVal.y + right * moveVal.x).magnitude;
+            Vector3 dirwithvertical = direction * m_ModifiedMoveSpeed;
+            dirwithvertical.y = (m_GravityCurve.Evaluate(m_CurrentJumpDuration / m_JumpDuration) * -m_GravityForce) + (m_JumpCurve.Evaluate(m_CurrentJumpDuration / m_JumpDuration) * m_JumpForce);
+            //Debug.Log(speed_mult + " : " + StateMachine.SpeedMultiplier());
+
+            //body.AddForce(direction * Time.deltaTime * (speed_mult * StateMachine.SpeedMultiplier()), ForceMode.Force);
+            m_Controller.Move(dirwithvertical * Time.deltaTime);
+            if (moveVal.magnitude > 0)
+            {
+                m_CharModel.transform.rotation = Quaternion.RotateTowards(m_CharModel.transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 300);
+            }
+
+            FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
+
+            if (direction.magnitude > 0.06 && m_Controller.isGrounded)
+            {
+                m_Anim.speed = (m_ModifiedMoveSpeed / 2.6f) * direction.magnitude;
+            }
+            else
+            {
+                m_Anim.speed = 1.0f;
+            }
+            m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
+            m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
+            m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
         }
-        else
-        {
-            m_Anim.speed = 1.0f;
-        }
-        m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
-        m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
-        m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
     }
 
     private void OnDrawGizmos()
