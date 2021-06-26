@@ -18,6 +18,7 @@ public class Movement_Normal : MonoBehaviour
     public AnimationCurve m_GravityCurve;
     float m_CurrentJumpDuration = 0;
     float m_ModifiedMoveSpeed;
+    float m_SprintInput;
 
     
     [Range(1, 1000)]
@@ -88,6 +89,11 @@ public class Movement_Normal : MonoBehaviour
         moveVal = value.Get<Vector2>();
     }
 
+    void OnSprint(InputValue value)
+    {
+        m_SprintInput = value.Get<float>();
+    }
+
     void OnJump()
     {
         if (m_Controller.isGrounded)
@@ -108,7 +114,15 @@ public class Movement_Normal : MonoBehaviour
     {
         m_CurrentJumpDuration -= Time.deltaTime;
         StateMachine.Tick();
-        m_ModifiedMoveSpeed = m_MoveSpeed * StateMachine.SpeedMultiplier();
+        if(StateMachine.CanSprint())
+        {
+            m_ModifiedMoveSpeed = m_MoveSpeed + (StateMachine.SpeedMultiplier()*m_SprintInput);
+        }
+        else
+        {
+            m_ModifiedMoveSpeed = m_MoveSpeed + StateMachine.SpeedMultiplier();
+        }
+        
 
 
 
