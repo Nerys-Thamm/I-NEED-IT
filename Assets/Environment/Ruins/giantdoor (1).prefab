@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7795606573317577711}
   - component: {fileID: 6593363817168917578}
   - component: {fileID: 8963467539360555136}
+  - component: {fileID: 1896100559355726403}
   m_Layer: 0
   m_Name: giantdoor (1)
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1896100559355726403
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450183367208403285}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 282834947476036824, guid: f17cf8de136f53d4a8168548f9e3eb2d, type: 3}
