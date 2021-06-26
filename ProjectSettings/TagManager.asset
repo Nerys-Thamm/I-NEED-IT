@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PuzzleCube
+  - PlayerHitBox
   layers:
   - Default
   - TransparentFX

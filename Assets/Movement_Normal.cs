@@ -169,11 +169,6 @@ public class Movement_Normal : MonoBehaviour
             m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
             m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
             m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
-
-            if (HasDied)
-            {
-                Die();
-            }
         }
     }
 
@@ -199,7 +194,10 @@ public class Movement_Normal : MonoBehaviour
     public void Die()
     {
         CanMove = false;
+        HasDied = true;
         m_CharModel.SetActive(false);
+        this.GetComponent<CapsuleCollider>().enabled = false;
+        m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, transform.rotation);
 
         StartCoroutine(DelayRespawn(5.0f, obj));
@@ -209,7 +207,8 @@ public class Movement_Normal : MonoBehaviour
     IEnumerator DelayRespawn(float time, GameObject DeathPrefab)
     {
         yield return new WaitForSeconds(time);
-
+        this.GetComponent<CapsuleCollider>().enabled = true;
+        m_Controller.enabled = true;
         Object.Destroy(DeathPrefab);
         m_CharModel.SetActive(true);
 
