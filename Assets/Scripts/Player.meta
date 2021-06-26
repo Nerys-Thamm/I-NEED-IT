@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Player.meta
 guid: 2ebfba5570f64bb409717a9c6bb8ddd3
 folderAsset: yes
 DefaultImporter:
+=======
+guid: fbab079cfe7ff474da5f3634fdaa6292
+PrefabImporter:
+>>>>>>> main:Assets/DrugPickup.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
