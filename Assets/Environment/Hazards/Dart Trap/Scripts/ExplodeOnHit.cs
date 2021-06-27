@@ -20,17 +20,28 @@ public class ExplodeOnHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        GameObject.Instantiate(m_ExplosionPrefab, this.transform.position, this.transform.rotation);
+        if (other.isTrigger && !other.tag.Equals("PlayerHitBox")) return;  
+        
 
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         //TODO: Code for interaction with entities when hit
         //-------------------------------------------------
-
-
+        if (other.tag.Equals("PlayerHitBox"))
+        {
+            Movement_Normal player = other.GetComponentInParent<Movement_Normal>();
+            if (!player.HasDied)
+            {
+                player.Die();
+            }
+            else
+            {
+                return;
+            }
+        }
 
         //-------------------------------------------------
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
+        GameObject.Instantiate(m_ExplosionPrefab, this.transform.position, this.transform.rotation);
         Destroy(this.gameObject);
     }
 }

@@ -6,7 +6,10 @@ using UnityEngine.InputSystem;
 public class Movement_Normal : MonoBehaviour
 {
     public Animator m_Anim;
-    public AudioSource m_footstepaudio;
+    public AudioSource Audio;
+    public AudioClip DeathAudio;
+    public AudioClip PickupAudio;
+   
 
     public GameObject m_CharModel;
     public CharacterController m_Controller;
@@ -29,9 +32,15 @@ public class Movement_Normal : MonoBehaviour
 
     public bool CanMove = false;
 
+    [Header("Camera Settings:")]
     public Camera Cam;
     public Transform Camera;
     public Transform FollowCam;
+
+    [Header("Respawning:")]
+    public bool HasDied = false;
+    public GameObject DeathPrefab;
+    public Transform RespawnLocation;
 
     Vector2 moveVal;
     Vector3 direction;
@@ -58,6 +67,9 @@ public class Movement_Normal : MonoBehaviour
 
     [Header("Pick Up Drug [Testing Purposes]")]
     public bool pickedUp = false;
+    bool forceEndDrug = false;
+    public DrugManager drugManager;
+
 
     // Awake to Setup the State Machine
     private void Awake()
@@ -75,6 +87,7 @@ public class Movement_Normal : MonoBehaviour
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
         // Add the Transition From Withdrawl to Sober
+        StateMachine.AddTransition(m_highState, m_withdrawlState, () => ForceDisableDrug());
         //StateMachine.AddTransition(m_withdrawlState, m_soberState, () => m_withdrawlState.ReturnToSober());
 
         // Add the Transition From Any State to High [At the moment, it won't go from High to High again upon the Pickup of a new Powerup]
@@ -125,7 +138,8 @@ public class Movement_Normal : MonoBehaviour
         {
             m_ModifiedMoveSpeed = m_MoveSpeed + StateMachine.SpeedMultiplier();
         }
-        
+
+        FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
 
         if (CanMove)
         {
@@ -150,7 +164,7 @@ public class Movement_Normal : MonoBehaviour
                 m_CharModel.transform.rotation = Quaternion.RotateTowards(m_CharModel.transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 300);
             }
 
-            FollowCam.Rotate(new Vector3(0, cameraangledelta * Time.deltaTime * camera_rotate_sensitivity, 0));
+            
 
             if (direction.magnitude > 0.06 && m_Controller.isGrounded)
             {
@@ -172,6 +186,15 @@ public class Movement_Normal : MonoBehaviour
         Gizmos.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position + (direction * speed_mult));
     }
         
+    public void CollectDrug(Transform drug)
+    {
+        Vector3 lookPos = drug.position - transform.position;
+        lookPos.y = 0;
+        m_CharModel.transform.rotation = Quaternion.LookRotation(lookPos);
+        m_Anim.SetTrigger("OnDrugPickup");
+        //Audio.PlayOneShot(PickupAudio);
+    }
+
     // Picked Up Drug function used as the Predicate for the State Machine Transition 
     public bool PickupDrug()
     {
@@ -182,5 +205,49 @@ public class Movement_Normal : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public bool ForceDisableDrug()
+    {
+        if (forceEndDrug)
+        {
+            forceEndDrug = !forceEndDrug;
+            return true;
+        }
+        else return false;
+    }
+
+    public void Die()
+    {
+        forceEndDrug = true;
+        CanMove = false;
+        HasDied = true;
+        m_CharModel.SetActive(false);
+        this.GetComponent<CapsuleCollider>().enabled = false;
+        m_Controller.enabled = false;
+        GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
+
+        Audio.PlayOneShot(DeathAudio);
+
+        StartCoroutine(DelayRespawn(5.0f, obj));
+    }
+
+
+    IEnumerator DelayRespawn(float time, GameObject DeathPrefab)
+    {
+        yield return new WaitForSeconds(time);
+
+        drugManager.RespawnDrugs();
+
+        transform.position = RespawnLocation.position;
+        transform.rotation = Quaternion.identity;
+
+        this.GetComponent<CapsuleCollider>().enabled = true;
+        m_Controller.enabled = true;
+        Object.Destroy(DeathPrefab);
+        m_CharModel.SetActive(true);
+
+        HasDied = false;
+        CanMove = true;
     }
 }

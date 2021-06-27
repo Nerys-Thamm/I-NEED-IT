@@ -4,11 +4,29 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    public AudioSource as_Footstep;
+    public AudioSource audioSource;
     public AudioClip ac_FootstepClip;
+    public AudioClip ac_LandingClip;
+    public AudioClip ac_JumpingClip;
+    public AudioClip ac_SurgeClip;
 
     public void PlayFootstep()
     {
-        as_Footstep.PlayOneShot(ac_FootstepClip);
+        audioSource.PlayOneShot(ac_FootstepClip);
+    }
+
+    public void PlayLanding()
+    {
+        audioSource.PlayOneShot(ac_LandingClip);
+    }
+
+    public void PlayJumping()
+    {
+        audioSource.PlayOneShot(ac_JumpingClip);
+    }
+
+    public void PlaySurge()
+    {
+        audioSource.PlayOneShot(ac_SurgeClip);
     }
 }
