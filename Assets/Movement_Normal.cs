@@ -69,6 +69,7 @@ public class Movement_Normal : MonoBehaviour
     public bool pickedUp = false;
     bool forceEndDrug = false;
     public DrugManager drugManager;
+    public int DrugsPickedUp;
 
 
     // Awake to Setup the State Machine
@@ -200,6 +201,7 @@ public class Movement_Normal : MonoBehaviour
     {
         if (pickedUp)
         {
+            DrugsPickedUp++;
             StateMachine.PickedUp();
             pickedUp = false;
             return true;
