@@ -591,6 +591,9 @@ MonoBehaviour:
   DeathPrefab: {fileID: 265141529123982548, guid: 738c12828ecd8b44f8d0c5f163c4ef38,
     type: 3}
   RespawnLocation: {fileID: 2935628084671337555}
+  PersistentData: {fileID: 0}
+  PersistencePrefab: {fileID: 775227067434370697, guid: 44d8e5021ba55df4c8737789d7f0f691,
+    type: 3}
   SoberMovementMultiplier: 1
   HighMovemnetMultiplier: 2
   HighDuration: 20
