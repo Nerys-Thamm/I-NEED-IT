@@ -9088,7 +9088,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203225965}
-  m_LocalRotation: {x: -0.18630533, y: 0.005142771, z: 0.0009752136, w: 0.98247796}
+  m_LocalRotation: {x: -0.18630533, y: 0.0051427884, z: 0.0009752166, w: 0.98247796}
   m_LocalPosition: {x: 43.76142, y: 1.538247, z: 50.59081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -63603,7 +63603,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478378492}
-  m_LocalRotation: {x: -0.1725393, y: 0.039227862, z: 0.006877024, w: 0.9841972}
+  m_LocalRotation: {x: -0.17253931, y: 0.039227836, z: 0.00687702, w: 0.9841972}
   m_LocalPosition: {x: 36.21243, y: 10.874125, z: 65.69773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -67993,8 +67993,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590554613}
-  m_LocalRotation: {x: -0.2705978, y: -0.65328187, z: 0.27059802, w: -0.6532812}
-  m_LocalPosition: {x: 2.6299996, y: 58.391754, z: 131.43}
+  m_LocalRotation: {x: 0.13249318, y: 0.78467256, z: -0.17979816, w: 0.57827955}
+  m_LocalPosition: {x: 4.9199996, y: 54.09175, z: 132.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95549,59 +95549,9 @@ PrefabInstance:
       objectReference: {fileID: 1296765248}
     - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
         type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[1].time
-      value: 0.9861622
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[2].time
-      value: 2.543495
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[3].time
-      value: 3.899848
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[4].time
-      value: 5.954771
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[5].time
-      value: 7.063452
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[6].time
-      value: 8.637224
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[2].value
-      value: 0.18063873
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[3].value
-      value: 0.49795333
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[4].value
-      value: 0.552634
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[5].value
-      value: 0.7991791
-      objectReference: {fileID: 0}
-    - target: {fileID: 7887392144174810030, guid: 370f39ac1a9e3b444a15df75e6e57678,
-        type: 3}
-      propertyPath: WithdrawlRate.m_Curve.Array.data[6].value
-      value: 0.88406277
-      objectReference: {fileID: 0}
+      propertyPath: FirstPickupAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a94e730468e16b4d90a9047d68da799, type: 3}
     - target: {fileID: 7887392145201161081, guid: 370f39ac1a9e3b444a15df75e6e57678,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -7,8 +7,10 @@ public class Movement_Normal : MonoBehaviour
 {
     public Animator m_Anim;
     public AudioSource Audio;
+    public AudioSource srcAudio;
     public AudioClip DeathAudio;
     public AudioClip PickupAudio;
+    
    
 
     public GameObject m_CharModel;
@@ -67,6 +69,7 @@ public class Movement_Normal : MonoBehaviour
     public float WithdrawlMaxMovement = 1.0f;
     public AnimationCurve WithdrawlRate = AnimationCurve.Linear(0.0f, 1.0f, 10.0f, 0.5f);
     public Light DirectionalLight;
+    public AudioClip WithdrawalAudio;
 
     [Header("Pick Up Drug [Testing Purposes]")]
     public bool pickedUp = false;
@@ -75,6 +78,10 @@ public class Movement_Normal : MonoBehaviour
     public int DrugsPickedUp;
     public GameObject PickupParticle;
     public GameObject PickupPartcileLocation;
+
+    [Header("Narration Audio")]
+    public AudioClip FirstPickupAudio;
+    public bool FirstPickup;
 
 
     // Awake to Setup the State Machine
@@ -89,6 +96,8 @@ public class Movement_Normal : MonoBehaviour
             Debug.LogWarning("NO PERSISTENT DATA FOUND");
         }
 
+        FirstPickup = true;
+
         HighParticles.SetActive(false);
 
         Cam = UnityEngine.Camera.main;
@@ -99,7 +108,7 @@ public class Movement_Normal : MonoBehaviour
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
         m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
+        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
@@ -200,7 +209,7 @@ public class Movement_Normal : MonoBehaviour
                 m_Anim.speed = 1.0f;
             }
             m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
-            m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
+            m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0) && StateMachine.CanSprint());
             m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
 
             if (HasDied)
@@ -238,6 +247,18 @@ public class Movement_Normal : MonoBehaviour
             DrugsPickedUp++;
             StateMachine.PickedUp();
             pickedUp = false;
+
+            if (FirstPickup)
+            {
+                if (FirstPickupAudio != null)
+                {
+                    Audio.clip = FirstPickupAudio;
+                    Audio.PlayDelayed(1.5f);
+                    
+                }
+                FirstPickup = false;
+            }
+
             return true;
         }
         return false;
@@ -262,7 +283,7 @@ public class Movement_Normal : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
-        Audio.PlayOneShot(DeathAudio);
+        srcAudio.PlayOneShot(DeathAudio);
 
         StartCoroutine(DelayRespawn(5.0f, obj));
     }
