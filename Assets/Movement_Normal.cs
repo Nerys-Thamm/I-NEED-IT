@@ -70,6 +70,7 @@ public class Movement_Normal : MonoBehaviour
     bool forceEndDrug = false;
     public DrugManager drugManager;
     public int DrugsPickedUp;
+    public GameObject PickupParticle;
 
 
     // Awake to Setup the State Machine
@@ -192,7 +193,10 @@ public class Movement_Normal : MonoBehaviour
         Vector3 lookPos = drug.position - transform.position;
         lookPos.y = 0;
         m_CharModel.transform.rotation = Quaternion.LookRotation(lookPos);
+        CanMove = false;
+        m_Anim.speed = 1.0f;
         m_Anim.SetTrigger("OnDrugPickup");
+        PickupParticle.GetComponent<ParticleSystem>().Play();
         //Audio.PlayOneShot(PickupAudio);
     }
 
