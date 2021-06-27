@@ -9,6 +9,8 @@ public class Withdrawls : IState
     // The Number of Times High which is used to decide the severity of symptoms.
     public int DrugPickedUp;
     PersistentSceneData PersistentData;
+    public AudioSource Audio;
+    public AudioClip WithdrawalAudio;
 
     // The Movement Speed increase/Decrease that the Drug State Gives
     private float DefaultMovement;
@@ -37,10 +39,13 @@ public class Withdrawls : IState
     float DefaultIntensity;
 
     // Constructor that sets all the variables
-    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
+    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, AudioSource source, AudioClip clip, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
     {
         PersistentData = TimesPickedup;
         DrugPickedUp = TimesPickedup.GetDrugs();
+
+        Audio = source;
+        WithdrawalAudio = clip;
 
         // Apply The Movement Values
         DefaultMovement = defaultMovement;
@@ -66,8 +71,14 @@ public class Withdrawls : IState
 
     public void OnEnter()
     {
+        
         DrugPickedUp = PersistentData.GetDrugs();
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
+
+        Audio.volume = IntensityValue;
+        Audio.loop = true;
+        Audio.clip = WithdrawalAudio;
+        Audio.Play();
 
         Debug.Log(DrugPickedUp);
         m_MovementSpeedMultiplier = Mathf.Clamp((1 - RateOfWithdrawal.Evaluate(DrugPickedUp) / 2), minMovementMultiplier, maxMovemnentMultiplier);
@@ -83,6 +94,9 @@ public class Withdrawls : IState
 
     public void OnExit()
     {
+        Audio.loop = false;
+        Audio.volume = 0.181f;
+        Audio.Stop();
         vignette.intensity.value = DefaultVignette;
         DirectionalLight.intensity = DefaultIntensity; 
     }

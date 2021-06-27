@@ -9,6 +9,7 @@ public class Movement_Normal : MonoBehaviour
     public AudioSource Audio;
     public AudioClip DeathAudio;
     public AudioClip PickupAudio;
+    
    
 
     public GameObject m_CharModel;
@@ -67,6 +68,7 @@ public class Movement_Normal : MonoBehaviour
     public float WithdrawlMaxMovement = 1.0f;
     public AnimationCurve WithdrawlRate = AnimationCurve.Linear(0.0f, 1.0f, 10.0f, 0.5f);
     public Light DirectionalLight;
+    public AudioClip WithdrawalAudio;
 
     [Header("Pick Up Drug [Testing Purposes]")]
     public bool pickedUp = false;
@@ -99,7 +101,7 @@ public class Movement_Normal : MonoBehaviour
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
         m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
+        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, Audio, WithdrawalAudio, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
