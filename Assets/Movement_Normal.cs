@@ -263,6 +263,7 @@ public class Movement_Normal : MonoBehaviour
             {
                 if (FirstPickupAudio != null)
                 {
+                    Audio.volume = 1.0f;
                     Audio.clip = FirstPickupAudio;
                     Audio.PlayDelayed(1.5f);
                     
