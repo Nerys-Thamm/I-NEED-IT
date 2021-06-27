@@ -8,6 +8,7 @@ public class PlayerAudio : MonoBehaviour
     public AudioClip ac_FootstepClip;
     public AudioClip ac_LandingClip;
     public AudioClip ac_JumpingClip;
+    public AudioClip ac_SurgeClip;
 
     public void PlayFootstep()
     {
@@ -22,5 +23,10 @@ public class PlayerAudio : MonoBehaviour
     public void PlayJumping()
     {
         audioSource.PlayOneShot(ac_JumpingClip);
+    }
+
+    public void PlaySurge()
+    {
+        audioSource.PlayOneShot(ac_SurgeClip);
     }
 }

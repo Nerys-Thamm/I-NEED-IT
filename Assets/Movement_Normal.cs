@@ -8,6 +8,8 @@ public class Movement_Normal : MonoBehaviour
     public Animator m_Anim;
     public AudioSource Audio;
     public AudioClip DeathAudio;
+    public AudioClip PickupAudio;
+   
 
     public GameObject m_CharModel;
     public CharacterController m_Controller;
@@ -65,6 +67,9 @@ public class Movement_Normal : MonoBehaviour
 
     [Header("Pick Up Drug [Testing Purposes]")]
     public bool pickedUp = false;
+    bool forceEndDrug = false;
+    public DrugManager drugManager;
+
 
     // Awake to Setup the State Machine
     private void Awake()
@@ -82,6 +87,7 @@ public class Movement_Normal : MonoBehaviour
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
         // Add the Transition From Withdrawl to Sober
+        StateMachine.AddTransition(m_highState, m_withdrawlState, () => ForceDisableDrug());
         //StateMachine.AddTransition(m_withdrawlState, m_soberState, () => m_withdrawlState.ReturnToSober());
 
         // Add the Transition From Any State to High [At the moment, it won't go from High to High again upon the Pickup of a new Powerup]
@@ -180,6 +186,15 @@ public class Movement_Normal : MonoBehaviour
         Gizmos.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position + (direction * speed_mult));
     }
         
+    public void CollectDrug(Transform drug)
+    {
+        Vector3 lookPos = drug.position - transform.position;
+        lookPos.y = 0;
+        m_CharModel.transform.rotation = Quaternion.LookRotation(lookPos);
+        m_Anim.SetTrigger("OnDrugPickup");
+        //Audio.PlayOneShot(PickupAudio);
+    }
+
     // Picked Up Drug function used as the Predicate for the State Machine Transition 
     public bool PickupDrug()
     {
@@ -192,9 +207,19 @@ public class Movement_Normal : MonoBehaviour
         return false;
     }
 
+    public bool ForceDisableDrug()
+    {
+        if (forceEndDrug)
+        {
+            forceEndDrug = !forceEndDrug;
+            return true;
+        }
+        else return false;
+    }
 
     public void Die()
     {
+        forceEndDrug = true;
         CanMove = false;
         HasDied = true;
         m_CharModel.SetActive(false);
@@ -211,6 +236,8 @@ public class Movement_Normal : MonoBehaviour
     IEnumerator DelayRespawn(float time, GameObject DeathPrefab)
     {
         yield return new WaitForSeconds(time);
+
+        drugManager.RespawnDrugs();
 
         transform.position = RespawnLocation.position;
         transform.rotation = Quaternion.identity;

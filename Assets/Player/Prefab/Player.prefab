@@ -188,6 +188,7 @@ MonoBehaviour:
   ac_FootstepClip: {fileID: 8300000, guid: 70e0af9c5a6c3cc438818a9b35a62ce1, type: 3}
   ac_LandingClip: {fileID: 8300000, guid: e2e2d32a26039fd459419fca59177d8b, type: 3}
   ac_JumpingClip: {fileID: 8300000, guid: 38885c013b1e196429ee2821146fba7c, type: 3}
+  ac_SurgeClip: {fileID: 8300000, guid: d87f1f83ab059e2458259761e4697edc, type: 3}
 --- !u!1 &6440139309267723107
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +448,7 @@ GameObject:
   - component: {fileID: 5567205334839231049}
   - component: {fileID: 1039114419440792769}
   - component: {fileID: 8459776178999002734}
+  - component: {fileID: 3856822372902704597}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -524,6 +526,7 @@ MonoBehaviour:
   m_Anim: {fileID: 6565332529821774801}
   Audio: {fileID: 1039114419440792769}
   DeathAudio: {fileID: 8300000, guid: 2045dfeda1043b940945f80035a51102, type: 3}
+  PickupAudio: {fileID: 0}
   m_CharModel: {fileID: 3678895940255499472}
   m_Controller: {fileID: 5567205334839231049}
   m_MoveSpeed: 4
@@ -590,7 +593,7 @@ MonoBehaviour:
   RespawnLocation: {fileID: 0}
   SoberMovementMultiplier: 1
   HighMovemnetMultiplier: 2
-  HighDuration: 5
+  HighDuration: 20
   WithdrawlMinMovement: 0.5
   WithdrawlMaxMovement: 1
   WithdrawlRate:
@@ -673,6 +676,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   DirectionalLight: {fileID: 0}
   pickedUp: 0
+  drugManager: {fileID: 3856822372902704597}
 --- !u!23 &7887392144174810024
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -885,6 +889,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_pickuprange: 0
   m_carryrange: 0
+--- !u!114 &3856822372902704597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887392144174810005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f40b105184c5f34baea8b7a86ba6cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7887392145201161080
 GameObject:
   m_ObjectHideFlags: 0
