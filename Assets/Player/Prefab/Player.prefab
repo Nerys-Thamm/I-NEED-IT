@@ -590,7 +590,7 @@ MonoBehaviour:
   HasDied: 0
   DeathPrefab: {fileID: 265141529123982548, guid: 738c12828ecd8b44f8d0c5f163c4ef38,
     type: 3}
-  RespawnLocation: {fileID: 0}
+  RespawnLocation: {fileID: 2935628084671337555}
   SoberMovementMultiplier: 1
   HighMovemnetMultiplier: 2
   HighDuration: 20
@@ -678,7 +678,9 @@ MonoBehaviour:
   pickedUp: 0
   drugManager: {fileID: 3856822372902704597}
   DrugsPickedUp: 0
-  PickupParticle: {fileID: 238825989517169932}
+  PickupParticle: {fileID: 5726460771341155886, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
+    type: 3}
+  PickupPartcileLocation: {fileID: 8779185933449134015}
 --- !u!23 &7887392144174810024
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1160,84 +1162,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4598027388121741697}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8779185933449134015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4171856508233710018, guid: 3ef8c2b9cd706e44c8e7a2dfd16418da,
+    type: 3}
+  m_PrefabInstance: {fileID: 4598027388121741697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2935628084671337555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1689425713037159890, guid: 3ef8c2b9cd706e44c8e7a2dfd16418da,
     type: 3}
   m_PrefabInstance: {fileID: 4598027388121741697}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5487639736068795170
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2935628084671337555}
-    m_Modifications:
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 52.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 131.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155885, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5726460771341155886, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-        type: 3}
-      propertyPath: m_Name
-      value: DrugPickup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6fd9b1bf9bb97f04db3bdbabad40f802, type: 3}
---- !u!1 &238825989517169932 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5726460771341155886, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
-    type: 3}
-  m_PrefabInstance: {fileID: 5487639736068795170}
   m_PrefabAsset: {fileID: 0}

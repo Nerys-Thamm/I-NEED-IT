@@ -71,6 +71,7 @@ public class Movement_Normal : MonoBehaviour
     public DrugManager drugManager;
     public int DrugsPickedUp;
     public GameObject PickupParticle;
+    public GameObject PickupPartcileLocation;
 
 
     // Awake to Setup the State Machine
@@ -114,7 +115,7 @@ public class Movement_Normal : MonoBehaviour
 
     void OnJump()
     {
-        if (m_Controller.isGrounded)
+        if (m_Controller.isGrounded && CanMove)
         {
             m_CurrentJumpDuration = m_JumpDuration;
             m_Anim.SetTrigger("OnJump");
@@ -196,7 +197,8 @@ public class Movement_Normal : MonoBehaviour
         CanMove = false;
         m_Anim.speed = 1.0f;
         m_Anim.SetTrigger("OnDrugPickup");
-        PickupParticle.GetComponent<ParticleSystem>().Play();
+        GameObject obj = Instantiate(PickupParticle, PickupPartcileLocation.transform.position, Quaternion.identity);
+        //obj.transform.SetParent(PickupPartcileLocation.transform);
         //Audio.PlayOneShot(PickupAudio);
     }
 
@@ -232,7 +234,6 @@ public class Movement_Normal : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
-
         Audio.PlayOneShot(DeathAudio);
 
         StartCoroutine(DelayRespawn(5.0f, obj));

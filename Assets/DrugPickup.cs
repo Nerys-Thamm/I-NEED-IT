@@ -11,8 +11,11 @@ public class DrugPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Movement_Normal>().CollectDrug(this.transform);
-            StartCoroutine(DestroyDrug(other.GetComponent<Movement_Normal>()));
+            if (other.GetComponent<Movement_Normal>().m_Controller.isGrounded)
+            {
+                other.GetComponent<Movement_Normal>().CollectDrug(this.transform);
+                StartCoroutine(DestroyDrug(other.GetComponent<Movement_Normal>()));
+            }
         }
     }
 
