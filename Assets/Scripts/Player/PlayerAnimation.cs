@@ -10,4 +10,9 @@ public class PlayerAnimation : MonoBehaviour
     {
         player.CanMove = type == 1 ? true : false;
     }
+
+    public void SetHigh()
+    {
+        player.pickedUp = true;
+    }
 }

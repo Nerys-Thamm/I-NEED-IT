@@ -59,6 +59,7 @@ public class Movement_Normal : MonoBehaviour
     [Header("High Setup: ")]
     public float HighMovemnetMultiplier = 2.0f;
     public float HighDuration = 10.0f;
+    public GameObject HighParticles;
     [Header("Withdrawl Setup: ")]
     public float WithdrawlMinMovement = 0.5f;
     public float WithdrawlMaxMovement = 1.0f;
@@ -77,6 +78,8 @@ public class Movement_Normal : MonoBehaviour
     // Awake to Setup the State Machine
     private void Awake()
     {
+        HighParticles.SetActive(false);
+
         Cam = UnityEngine.Camera.main;
 
         // Creates the State Machine
@@ -84,7 +87,7 @@ public class Movement_Normal : MonoBehaviour
 
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
-        m_highState = new High(Cam, DirectionalLight, HighMovemnetMultiplier, HighDuration);
+        m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
         m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
@@ -94,7 +97,7 @@ public class Movement_Normal : MonoBehaviour
         //StateMachine.AddTransition(m_withdrawlState, m_soberState, () => m_withdrawlState.ReturnToSober());
 
         // Add the Transition From Any State to High [At the moment, it won't go from High to High again upon the Pickup of a new Powerup]
-        StateMachine.AddAnyTransition(m_highState, () => PickupDrug());
+        StateMachine.AddAnyTransition(m_highState, () => EnableHigh());
         // Set the Start State to Sober
         StateMachine.SetState(m_soberState);
 
@@ -180,6 +183,11 @@ public class Movement_Normal : MonoBehaviour
             m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
             m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
             m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
+
+            if (HasDied)
+            {
+                Die();
+            }
         }
     }
 
@@ -203,7 +211,7 @@ public class Movement_Normal : MonoBehaviour
     }
 
     // Picked Up Drug function used as the Predicate for the State Machine Transition 
-    public bool PickupDrug()
+    public bool EnableHigh()
     {
         if (pickedUp)
         {

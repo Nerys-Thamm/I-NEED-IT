@@ -23,7 +23,7 @@ public class DrugPickup : MonoBehaviour
     IEnumerator DestroyDrug(Movement_Normal player)
     {
         yield return new WaitForSeconds(0.83f);
-        player.pickedUp = true;
+        //player.pickedUp = true;
         this.gameObject.SetActive(false);
     }
 }
