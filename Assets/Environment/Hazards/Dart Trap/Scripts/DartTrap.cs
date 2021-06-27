@@ -41,4 +41,9 @@ public class DartTrap : MonoBehaviour
         GameObject newProjectile = GameObject.Instantiate(m_ProjectilePrefab, this.transform.position, this.transform.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(this.transform.up * m_ProjectileSpeed, ForceMode.Impulse);
     }
+
+    public void SetAutoFire(bool _val)
+    {
+        m_AutoFireEnabled = _val;
+    }
 }
