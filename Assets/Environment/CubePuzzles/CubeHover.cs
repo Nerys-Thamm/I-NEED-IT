@@ -6,7 +6,7 @@ public class CubeHover : MonoBehaviour
 {
     public float m_height = 5.0f;
     public float m_floatforce = 10.0f;
-
+    public float m_maxvelocity = 10.0f;
     public float m_playerseekforce = 5.0f;
 
     public bool m_isFloating = false;
@@ -27,7 +27,10 @@ public class CubeHover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(m_body.velocity.magnitude > m_maxvelocity)
+        {
+            m_body.velocity = m_body.velocity.normalized * m_maxvelocity;
+        }
     }
 
     private void FixedUpdate()
