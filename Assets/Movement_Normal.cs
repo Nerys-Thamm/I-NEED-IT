@@ -84,7 +84,8 @@ public class Movement_Normal : MonoBehaviour
 
         if (PersistentData == null)
         {
-            Instantiate(PersistencePrefab);
+            GameObject obj = Instantiate(PersistencePrefab);
+            PersistentData = obj.GetComponent<PersistentSceneData>();
             Debug.LogWarning("NO PERSISTENT DATA FOUND");
         }
 
