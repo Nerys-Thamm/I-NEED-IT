@@ -84,6 +84,8 @@ public class Movement_Normal : MonoBehaviour
     public bool FirstPickup;
 
 
+    public bool AnimationStartOveride;
+
     // Awake to Setup the State Machine
     private void Awake()
     {
@@ -131,6 +133,8 @@ public class Movement_Normal : MonoBehaviour
 
 
         m_Anim.SetBool("IsGrounded", true);
+
+        
     }
 
 
@@ -162,6 +166,13 @@ public class Movement_Normal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (AnimationStartOveride)
+        {
+            m_Anim.SetTrigger("AnimOverride");
+            CanMove = true;
+            AnimationStartOveride = false;
+        }
+
         m_CurrentJumpDuration -= Time.deltaTime;
         StateMachine.Tick();
         if(StateMachine.CanSprint())
@@ -306,4 +317,5 @@ public class Movement_Normal : MonoBehaviour
         HasDied = false;
         CanMove = true;
     }
+
 }
