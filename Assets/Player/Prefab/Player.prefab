@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3464573601200716569}
   - component: {fileID: 7302218894948055167}
+  - component: {fileID: 4120605844037263789}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: PlayerHitBox
@@ -44,6 +45,102 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8441868, y: 2.4179, z: 1.1646881}
   m_Center: {x: 0.065066695, y: 0.09712982, z: -0.01085493}
+--- !u!82 &4120605844037263789
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3154901979618284009}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &116396454069801314
 AudioSource:
   m_ObjectHideFlags: 0
@@ -525,6 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Anim: {fileID: 6565332529821774801}
   Audio: {fileID: 1039114419440792769}
+  srcAudio: {fileID: 4120605844037263789}
   DeathAudio: {fileID: 8300000, guid: 2045dfeda1043b940945f80035a51102, type: 3}
   PickupAudio: {fileID: 0}
   m_CharModel: {fileID: 3678895940255499472}
@@ -1245,6 +1343,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ef8c2b9cd706e44c8e7a2dfd16418da, type: 3}
+--- !u!4 &2935628084671337555 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1689425713037159890, guid: 3ef8c2b9cd706e44c8e7a2dfd16418da,
+    type: 3}
+  m_PrefabInstance: {fileID: 4598027388121741697}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3678895940255499472 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3ef8c2b9cd706e44c8e7a2dfd16418da,
@@ -1254,12 +1358,6 @@ GameObject:
 --- !u!4 &4054859181612473962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ef8c2b9cd706e44c8e7a2dfd16418da,
-    type: 3}
-  m_PrefabInstance: {fileID: 4598027388121741697}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2935628084671337555 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1689425713037159890, guid: 3ef8c2b9cd706e44c8e7a2dfd16418da,
     type: 3}
   m_PrefabInstance: {fileID: 4598027388121741697}
   m_PrefabAsset: {fileID: 0}

@@ -7,6 +7,7 @@ public class Movement_Normal : MonoBehaviour
 {
     public Animator m_Anim;
     public AudioSource Audio;
+    public AudioSource srcAudio;
     public AudioClip DeathAudio;
     public AudioClip PickupAudio;
     
@@ -101,7 +102,7 @@ public class Movement_Normal : MonoBehaviour
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
         m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, Audio, WithdrawalAudio, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
+        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
@@ -264,7 +265,7 @@ public class Movement_Normal : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
-        Audio.PlayOneShot(DeathAudio);
+        srcAudio.PlayOneShot(DeathAudio);
 
         StartCoroutine(DelayRespawn(5.0f, obj));
     }
