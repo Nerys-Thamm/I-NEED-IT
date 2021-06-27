@@ -75,7 +75,7 @@ public class Withdrawls : IState
         DrugPickedUp = PersistentData.GetDrugs();
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
 
-        Audio.volume = IntensityValue;
+        Audio.volume =  Mathf.Clamp(IntensityValue, 0, 0.6f);
         Audio.loop = true;
         Audio.clip = WithdrawalAudio;
         Audio.Play();
