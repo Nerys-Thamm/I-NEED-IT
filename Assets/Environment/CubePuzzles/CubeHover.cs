@@ -8,6 +8,8 @@ public class CubeHover : MonoBehaviour
     public float m_floatforce = 10.0f;
     public float m_maxvelocity = 10.0f;
     public float m_playerseekforce = 5.0f;
+    public AudioClip m_FloatAudio;
+    public AudioSource m_Source;
 
     public bool m_isFloating = false;
 
@@ -52,11 +54,14 @@ public class CubeHover : MonoBehaviour
         {
             m_isFloating = false;
             m_floatparticles.Stop();
+            m_Source.Stop();
         }
         else
         {
             m_isFloating = true;
             m_floatparticles.Play();
+            m_Source.clip = m_FloatAudio;
+            m_Source.Play();
         }
     }
 }
