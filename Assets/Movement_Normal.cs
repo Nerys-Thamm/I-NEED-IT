@@ -54,6 +54,8 @@ public class Movement_Normal : MonoBehaviour
     Withdrawls m_withdrawlState;
 
     [Header("Drug State Machine Setup", order = 0)]
+    public PersistentSceneData PersistentData;
+    public GameObject PersistencePrefab;
     [Header("Sober Setup: ", order = 1)] 
     public float SoberMovementMultiplier = 1.0f;
     [Header("High Setup: ")]
@@ -78,6 +80,14 @@ public class Movement_Normal : MonoBehaviour
     // Awake to Setup the State Machine
     private void Awake()
     {
+        PersistentData = FindObjectOfType<PersistentSceneData>();
+
+        if (PersistentData == null)
+        {
+            Instantiate(PersistencePrefab);
+            Debug.LogWarning("NO PERSISTENT DATA FOUND");
+        }
+
         HighParticles.SetActive(false);
 
         Cam = UnityEngine.Camera.main;
@@ -88,7 +98,7 @@ public class Movement_Normal : MonoBehaviour
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
         m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
+        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
@@ -99,7 +109,15 @@ public class Movement_Normal : MonoBehaviour
         // Add the Transition From Any State to High [At the moment, it won't go from High to High again upon the Pickup of a new Powerup]
         StateMachine.AddAnyTransition(m_highState, () => EnableHigh());
         // Set the Start State to Sober
-        StateMachine.SetState(m_soberState);
+
+        if (PersistentData.GetDrugs() == 0)
+        {
+            StateMachine.SetState(m_soberState);
+        }
+        else
+        {
+            StateMachine.SetState(m_withdrawlState);
+        }
 
 
         m_Anim.SetBool("IsGrounded", true);
@@ -215,6 +233,7 @@ public class Movement_Normal : MonoBehaviour
     {
         if (pickedUp)
         {
+            PersistentData.IncreasePickedup();
             DrugsPickedUp++;
             StateMachine.PickedUp();
             pickedUp = false;

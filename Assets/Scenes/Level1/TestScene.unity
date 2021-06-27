@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 1205.327, g: 1493.4386, b: 1976.73, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7153,7 +7153,7 @@ MonoBehaviour:
     meshQuery:
       layers: 16777223
       maskAndChannels: 234881031
-    surfaceParameter: 28372
+    surfaceParameter: 27132
     meshQueryIndex: 0
     subMeshQueryIndex: 0
     geometryHashValue: 5841598091286754878
@@ -9088,7 +9088,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203225965}
-  m_LocalRotation: {x: -0.18630533, y: 0.0051427884, z: 0.0009752166, w: 0.98247796}
+  m_LocalRotation: {x: -0.18630533, y: 0.005142771, z: 0.0009752136, w: 0.98247796}
   m_LocalPosition: {x: 43.76142, y: 1.538247, z: 50.59081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -17757,7 +17757,7 @@ MonoBehaviour:
     meshQuery:
       layers: 33554440
       maskAndChannels: 8
-    surfaceParameter: 28644
+    surfaceParameter: 27172
     meshQueryIndex: 1
     subMeshQueryIndex: 0
     geometryHashValue: 5841598091286754878
@@ -58137,7 +58137,7 @@ MonoBehaviour:
     meshQuery:
       layers: 33554440
       maskAndChannels: 8
-    surfaceParameter: 28644
+    surfaceParameter: 27172
     meshQueryIndex: 1
     subMeshQueryIndex: 0
     geometryHashValue: 5841598091286754878
@@ -93627,6 +93627,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SceneTransition
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903926356759762854, guid: 4b878b13657f365438eef5dd7d4a1ff2,
+        type: 3}
+      propertyPath: NextSceneName
+      value: TestScene 1
       objectReference: {fileID: 0}
     - target: {fileID: 3903926356759762872, guid: 4b878b13657f365438eef5dd7d4a1ff2,
         type: 3}

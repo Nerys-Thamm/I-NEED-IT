@@ -8,6 +8,7 @@ public class Withdrawls : IState
 {
     // The Number of Times High which is used to decide the severity of symptoms.
     public int DrugPickedUp;
+    PersistentSceneData PersistentData;
 
     // The Movement Speed increase/Decrease that the Drug State Gives
     private float DefaultMovement;
@@ -36,8 +37,11 @@ public class Withdrawls : IState
     float DefaultIntensity;
 
     // Constructor that sets all the variables
-    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
+    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
     {
+        PersistentData = TimesPickedup;
+        DrugPickedUp = TimesPickedup.GetDrugs();
+
         // Apply The Movement Values
         DefaultMovement = defaultMovement;
         minMovementMultiplier = minMove;
@@ -62,6 +66,7 @@ public class Withdrawls : IState
 
     public void OnEnter()
     {
+        DrugPickedUp = PersistentData.GetDrugs();
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
 
         Debug.Log(DrugPickedUp);
