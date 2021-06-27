@@ -350,14 +350,14 @@ ModelImporter:
         intParameter: 1
         messageOptions: 0
       - time: 0.49334493
-        functionName: SetCanMove
+        functionName: SetHigh
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 1
         messageOptions: 0
       - time: 1
-        functionName: SetHigh
+        functionName: SetCanMove
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

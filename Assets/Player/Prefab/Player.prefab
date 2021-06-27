@@ -711,7 +711,7 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1.0380421
+      time: 0.9861622
       value: 0.14719322
       inSlope: -0.0017616868
       outSlope: -0.0017616868
@@ -720,8 +720,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 2.448219
-      value: 0.15555328
+      time: 2.543495
+      value: 0.18063873
       inSlope: 0.012580668
       outSlope: 0.012580668
       tangentMode: 0
@@ -729,8 +729,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 3.971198
-      value: 0.3831462
+      time: 3.899848
+      value: 0.49795333
       inSlope: 0.01323316
       outSlope: 0.01323316
       tangentMode: 0
@@ -738,8 +738,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 6.5966043
-      value: 0.5308184
+      time: 5.954771
+      value: 0.552634
       inSlope: 0.047589045
       outSlope: 0.047589045
       tangentMode: 0
@@ -747,8 +747,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 8.008459
-      value: 0.75061035
+      time: 7.063452
+      value: 0.7991791
       inSlope: 0.080459476
       outSlope: 0.080459476
       tangentMode: 0
@@ -756,8 +756,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 8.940358
-      value: 0.8928918
+      time: 8.637224
+      value: 0.88406277
       inSlope: 0.1297122
       outSlope: 0.1297122
       tangentMode: 0
@@ -784,6 +784,8 @@ MonoBehaviour:
   PickupParticle: {fileID: 5726460771341155886, guid: 6fd9b1bf9bb97f04db3bdbabad40f802,
     type: 3}
   PickupPartcileLocation: {fileID: 8779185933449134015}
+  FirstPickupAudio: {fileID: 8300000, guid: 3a94e730468e16b4d90a9047d68da799, type: 3}
+  FirstPickup: 0
 --- !u!23 &7887392144174810024
 MeshRenderer:
   m_ObjectHideFlags: 0

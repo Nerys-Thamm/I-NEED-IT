@@ -79,6 +79,10 @@ public class Movement_Normal : MonoBehaviour
     public GameObject PickupParticle;
     public GameObject PickupPartcileLocation;
 
+    [Header("Narration Audio")]
+    public AudioClip FirstPickupAudio;
+    public bool FirstPickup;
+
 
     // Awake to Setup the State Machine
     private void Awake()
@@ -91,6 +95,8 @@ public class Movement_Normal : MonoBehaviour
             PersistentData = obj.GetComponent<PersistentSceneData>();
             Debug.LogWarning("NO PERSISTENT DATA FOUND");
         }
+
+        FirstPickup = true;
 
         HighParticles.SetActive(false);
 
@@ -241,6 +247,18 @@ public class Movement_Normal : MonoBehaviour
             DrugsPickedUp++;
             StateMachine.PickedUp();
             pickedUp = false;
+
+            if (FirstPickup)
+            {
+                if (FirstPickupAudio != null)
+                {
+                    Audio.clip = FirstPickupAudio;
+                    Audio.PlayDelayed(1.5f);
+                    
+                }
+                FirstPickup = false;
+            }
+
             return true;
         }
         return false;
