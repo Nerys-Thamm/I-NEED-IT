@@ -54,11 +54,14 @@ public class Movement_Normal : MonoBehaviour
     Withdrawls m_withdrawlState;
 
     [Header("Drug State Machine Setup", order = 0)]
+    public PersistentSceneData PersistentData;
+    public GameObject PersistencePrefab;
     [Header("Sober Setup: ", order = 1)] 
     public float SoberMovementMultiplier = 1.0f;
     [Header("High Setup: ")]
     public float HighMovemnetMultiplier = 2.0f;
     public float HighDuration = 10.0f;
+    public GameObject HighParticles;
     [Header("Withdrawl Setup: ")]
     public float WithdrawlMinMovement = 0.5f;
     public float WithdrawlMaxMovement = 1.0f;
@@ -69,11 +72,24 @@ public class Movement_Normal : MonoBehaviour
     public bool pickedUp = false;
     bool forceEndDrug = false;
     public DrugManager drugManager;
+    public int DrugsPickedUp;
+    public GameObject PickupParticle;
+    public GameObject PickupPartcileLocation;
 
 
     // Awake to Setup the State Machine
     private void Awake()
     {
+        PersistentData = FindObjectOfType<PersistentSceneData>();
+
+        if (PersistentData == null)
+        {
+            Instantiate(PersistencePrefab);
+            Debug.LogWarning("NO PERSISTENT DATA FOUND");
+        }
+
+        HighParticles.SetActive(false);
+
         Cam = UnityEngine.Camera.main;
 
         // Creates the State Machine
@@ -81,8 +97,8 @@ public class Movement_Normal : MonoBehaviour
 
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
-        m_highState = new High(Cam, DirectionalLight, HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
+        m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
+        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
@@ -91,9 +107,17 @@ public class Movement_Normal : MonoBehaviour
         //StateMachine.AddTransition(m_withdrawlState, m_soberState, () => m_withdrawlState.ReturnToSober());
 
         // Add the Transition From Any State to High [At the moment, it won't go from High to High again upon the Pickup of a new Powerup]
-        StateMachine.AddAnyTransition(m_highState, () => PickupDrug());
+        StateMachine.AddAnyTransition(m_highState, () => EnableHigh());
         // Set the Start State to Sober
-        StateMachine.SetState(m_soberState);
+
+        if (PersistentData.GetDrugs() == 0)
+        {
+            StateMachine.SetState(m_soberState);
+        }
+        else
+        {
+            StateMachine.SetState(m_withdrawlState);
+        }
 
 
         m_Anim.SetBool("IsGrounded", true);
@@ -112,7 +136,7 @@ public class Movement_Normal : MonoBehaviour
 
     void OnJump()
     {
-        if (m_Controller.isGrounded)
+        if (m_Controller.isGrounded && CanMove)
         {
             m_CurrentJumpDuration = m_JumpDuration;
             m_Anim.SetTrigger("OnJump");
@@ -177,6 +201,11 @@ public class Movement_Normal : MonoBehaviour
             m_Anim.SetBool("IsWalking", moveVal.magnitude > 0);
             m_Anim.SetBool("IsRunning", (m_ModifiedMoveSpeed > m_MoveSpeed) && (moveVal.magnitude > 0));
             m_Anim.SetBool("IsGrounded", m_Controller.isGrounded);
+
+            if (HasDied)
+            {
+                Die();
+            }
         }
     }
 
@@ -191,15 +220,21 @@ public class Movement_Normal : MonoBehaviour
         Vector3 lookPos = drug.position - transform.position;
         lookPos.y = 0;
         m_CharModel.transform.rotation = Quaternion.LookRotation(lookPos);
+        CanMove = false;
+        m_Anim.speed = 1.0f;
         m_Anim.SetTrigger("OnDrugPickup");
+        GameObject obj = Instantiate(PickupParticle, PickupPartcileLocation.transform.position, Quaternion.identity);
+        //obj.transform.SetParent(PickupPartcileLocation.transform);
         //Audio.PlayOneShot(PickupAudio);
     }
 
     // Picked Up Drug function used as the Predicate for the State Machine Transition 
-    public bool PickupDrug()
+    public bool EnableHigh()
     {
         if (pickedUp)
         {
+            PersistentData.IncreasePickedup();
+            DrugsPickedUp++;
             StateMachine.PickedUp();
             pickedUp = false;
             return true;
@@ -226,7 +261,6 @@ public class Movement_Normal : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
-
         Audio.PlayOneShot(DeathAudio);
 
         StartCoroutine(DelayRespawn(5.0f, obj));

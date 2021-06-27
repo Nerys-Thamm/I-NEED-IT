@@ -11,8 +11,11 @@ public class DrugPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Movement_Normal>().CollectDrug(this.transform);
-            StartCoroutine(DestroyDrug(other.GetComponent<Movement_Normal>()));
+            if (other.GetComponent<Movement_Normal>().m_Controller.isGrounded)
+            {
+                other.GetComponent<Movement_Normal>().CollectDrug(this.transform);
+                StartCoroutine(DestroyDrug(other.GetComponent<Movement_Normal>()));
+            }
         }
     }
 
@@ -20,7 +23,7 @@ public class DrugPickup : MonoBehaviour
     IEnumerator DestroyDrug(Movement_Normal player)
     {
         yield return new WaitForSeconds(0.83f);
-        player.pickedUp = true;
+        //player.pickedUp = true;
         this.gameObject.SetActive(false);
     }
 }

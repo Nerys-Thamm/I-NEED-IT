@@ -16,6 +16,8 @@ public class High : IState
 
     private Camera cam;
 
+    private GameObject ParticleEffect;
+
 
     ColorAdjustments colorAdjustments;
     ChromaticAberration chromatic;
@@ -27,8 +29,9 @@ public class High : IState
 
     public int DrugPickedUp = 0;
 
-    public High(Camera playerCam, Light DirectLight, float SpeedMultiplier, float duration)
+    public High(Camera playerCam, Light DirectLight, GameObject particles, float SpeedMultiplier, float duration)
     {
+        ParticleEffect = particles;
         directionalLight = DirectLight;
         DefaultIntensity = directionalLight.intensity;
 
@@ -48,6 +51,8 @@ public class High : IState
 
     public void OnEnter()
     {
+        ParticleEffect.SetActive(true);
+        ParticleEffect.GetComponent<ParticleSystem>().Play();
         colorAdjustments.saturation.value = 60.0f;
         if (chromatic != null)
         {
@@ -59,6 +64,8 @@ public class High : IState
 
     public void OnExit()
     {
+        ParticleEffect.SetActive(false);
+        ParticleEffect.GetComponent<ParticleSystem>().Stop();
         colorAdjustments.saturation.value = 8.0f;
         chromatic.intensity.overrideState = false;
     }
