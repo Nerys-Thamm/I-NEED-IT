@@ -7,6 +7,7 @@ public class DartTrap : MonoBehaviour
     public GameObject m_ProjectilePrefab;
     public float m_ProjectileSpeed;
     public float m_AutoFireDelay;
+    public float m_AutoFireStartDelay;
     public bool m_AutoFireEnabled;
 
     public AudioSource audioSource;
@@ -17,7 +18,7 @@ public class DartTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_AutoFireTimer = m_AutoFireDelay;
+        m_AutoFireTimer = m_AutoFireDelay + m_AutoFireStartDelay; ;
     }
 
     // Update is called once per frame

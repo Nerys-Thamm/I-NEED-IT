@@ -19,6 +19,7 @@ public class PressurePlateTrigger : MonoBehaviour
     public Color m_PressedColor;
     public SpriteRenderer m_Sprite;
     int m_numofobj = 0;
+    bool m_hasbeenpressed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,12 +45,14 @@ public class PressurePlateTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.isTrigger) return;
+        if (m_hasbeenpressed && m_SingleUse) return;
         if (other.tag != "Player" && m_ObjectToDetect == DetectedObj.PLAYER) return;
         if (other.tag != "PuzzleCube" && m_ObjectToDetect == DetectedObj.CUBE) return;
         
         if (m_numofobj == 0)
         {
             OnPress.Invoke();
+            m_hasbeenpressed = true;
         }
         m_numofobj++;
     }
