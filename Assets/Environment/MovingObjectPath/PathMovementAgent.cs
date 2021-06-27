@@ -10,6 +10,7 @@ public class PathMovementAgent : MonoBehaviour
     bool m_IsMoving;
     public UnityEvent m_OnNodeReach;
     public UnityEvent m_OnReachStartNode;
+    public UnityEvent m_OnReachLastNode;
     public float m_Speed;
     public float m_distancetonextnode;
     Vector3 m_direction;
@@ -43,6 +44,10 @@ public class PathMovementAgent : MonoBehaviour
             if(m_currentnode == m_Path.GetNode(0))
             {
                 m_OnReachStartNode.Invoke();
+            }
+            if (m_currentnode == m_Path.GetNode(m_Path.m_Path.Count-1))
+            {
+                m_OnReachLastNode.Invoke();
             }
         }
         if (m_IsMoving && m_timer < 0)
