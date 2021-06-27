@@ -694,7 +694,7 @@ MonoBehaviour:
     type: 3}
   SoberMovementMultiplier: 1
   HighMovemnetMultiplier: 2
-  HighDuration: 20
+  HighDuration: 40
   HighParticles: {fileID: 6009428508343295676}
   WithdrawlMinMovement: 0.5
   WithdrawlMaxMovement: 1
@@ -786,6 +786,7 @@ MonoBehaviour:
   PickupPartcileLocation: {fileID: 8779185933449134015}
   FirstPickupAudio: {fileID: 8300000, guid: 3a94e730468e16b4d90a9047d68da799, type: 3}
   FirstPickup: 0
+  AnimationStartOveride: 0
 --- !u!23 &7887392144174810024
 MeshRenderer:
   m_ObjectHideFlags: 0
