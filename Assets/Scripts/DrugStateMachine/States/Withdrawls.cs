@@ -66,7 +66,7 @@ public class Withdrawls : IState
 
         DefaultVignette = vignette.intensity.value;
 
-        VignetteCurve = AnimationCurve.Linear(0.0f, DefaultVignette, 1.0f, 1.0f);
+        VignetteCurve = AnimationCurve.Linear(0.0f, DefaultVignette, 1.0f, 0.6f);
     }
 
     public void OnEnter()
@@ -86,7 +86,7 @@ public class Withdrawls : IState
 
         DirectionalLight.intensity = Mathf.Clamp(DefaultIntensity * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp)), 1000, DefaultIntensity);
 
-        vignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), DefaultVignette, 0.9f);
+        vignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), DefaultVignette, 0.6f);
         
         CameraVolume.sharedProfile = profile;
         Debug.Log("STATE: WITHDRAWL");
