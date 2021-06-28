@@ -124,8 +124,9 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.1
-  preloadedAssets: []
+  bundleVersion: 1.0
+  preloadedAssets:
+  - {fileID: 11400000, guid: b0c3f315c38d32745839330d1011c490, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -592,7 +593,7 @@ PlayerSettings:
     30: RealtimeCSG;RealtimeCSG_1;RealtimeCSG_1_5;RealtimeCSG_1_5_62
   platformArchitecture: {}
   scriptingBackend:
-    Standalone: 1
+    Standalone: 0
   il2cppCompilerConfiguration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}

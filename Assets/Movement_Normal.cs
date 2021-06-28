@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Movement_Normal : MonoBehaviour
 {
@@ -144,6 +145,10 @@ public class Movement_Normal : MonoBehaviour
         m_Anim.SetBool("IsGrounded", true);
     }
 
+    void OnReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 
     void OnPause()
     {

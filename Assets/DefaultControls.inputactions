@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ReloadScene",
+                    "type": "Button",
+                    "id": "d6aa641c-5c0b-490a-bc62-5b7614558729",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -379,6 +387,28 @@
                     "processors": "",
                     "groups": "NormalControlScheme",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d691e36a-9ed2-413c-8116-afa5b0fb9173",
+                    "path": "<Keyboard>/R",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4ef33c1-1fc8-4381-8044-b4e41749555c",
+                    "path": "*/{Back}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "ReloadScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
