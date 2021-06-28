@@ -8,6 +8,9 @@ public class High : IState
 {
     // The Movement Speed increase/Decrease that the Drug State Gives
     private float m_MovementSpeedMultiplier;
+    public AudioSource Audio;
+    public AudioClip HighAudio;
+
 
     // The Length for the High period to last
     private float m_Duration;
@@ -29,7 +32,7 @@ public class High : IState
 
     public int DrugPickedUp = 0;
 
-    public High(Camera playerCam, Light DirectLight, GameObject particles, float SpeedMultiplier, float duration)
+    public High(Camera playerCam, Light DirectLight, GameObject particles, AudioSource source, AudioClip clip, float SpeedMultiplier, float duration)
     {
         ParticleEffect = particles;
         directionalLight = DirectLight;
@@ -37,6 +40,9 @@ public class High : IState
 
         m_MovementSpeedMultiplier = SpeedMultiplier;
         m_Duration = duration;
+
+        Audio = source;
+        HighAudio = clip;
 
         cam = playerCam;
 
@@ -51,6 +57,11 @@ public class High : IState
 
     public void OnEnter()
     {
+        Audio.volume = 0.5f;
+        Audio.loop = true;
+        Audio.clip = HighAudio;
+        Audio.Play();
+
         ParticleEffect.SetActive(true);
         ParticleEffect.GetComponent<ParticleSystem>().Play();
         colorAdjustments.saturation.value = 60.0f;
@@ -64,6 +75,9 @@ public class High : IState
 
     public void OnExit()
     {
+        Audio.loop = false;
+        Audio.volume = 0.181f;
+        Audio.Stop();
         ParticleEffect.SetActive(false);
         ParticleEffect.GetComponent<ParticleSystem>().Stop();
         colorAdjustments.saturation.value = 8.0f;
