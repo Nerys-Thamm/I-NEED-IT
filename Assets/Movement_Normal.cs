@@ -64,6 +64,10 @@ public class Movement_Normal : MonoBehaviour
     public float HighMovemnetMultiplier = 2.0f;
     public float HighDuration = 10.0f;
     public GameObject HighParticles;
+<<<<<<< Updated upstream
+=======
+    public AudioClip HighAudio;
+>>>>>>> Stashed changes
     [Header("Withdrawl Setup: ")]
     public float WithdrawlMinMovement = 0.5f;
     public float WithdrawlMaxMovement = 1.0f;
@@ -109,7 +113,11 @@ public class Movement_Normal : MonoBehaviour
 
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
+<<<<<<< Updated upstream
         m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
+=======
+        m_highState = new High(Cam, DirectionalLight, HighParticles, srcAudio, HighAudio, HighMovemnetMultiplier, HighDuration);
+>>>>>>> Stashed changes
         m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
