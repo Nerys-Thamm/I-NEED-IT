@@ -342,6 +342,7 @@ public class Movement_Normal : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
+        srcAudio.volume = 1.0f;
         srcAudio.PlayOneShot(DeathAudio);
 
         StartCoroutine(DelayRespawn(5.0f, obj));
