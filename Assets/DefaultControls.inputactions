@@ -68,6 +68,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Quit",
+                    "type": "Button",
+                    "id": "fd987b58-d287-47ec-a887-bf248908c0a0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -411,6 +419,28 @@
                     "action": "ReloadScene",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "034f9d47-b5b8-46a9-a5f7-fc09c0845ce8",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b886ac4d-8ff2-4a1f-bcac-92d7eb367f03",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -685,6 +715,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ReloadScene",
+                    "type": "Button",
+                    "id": "0d17b28e-3a4c-4bf9-96dc-f256ad3f294a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -724,11 +762,33 @@
                 {
                     "name": "",
                     "id": "de8f1fe4-24ce-4259-b84c-7149f850949f",
-                    "path": "<Gamepad>/select",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "NormalControlScheme",
                     "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3b1c0cc-f6c8-45ad-b872-0a63cb462212",
+                    "path": "<Keyboard>/R",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "ReloadScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d102c936-527f-4f5b-8346-d62de5303c26",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "ReloadScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
