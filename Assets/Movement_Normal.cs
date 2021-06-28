@@ -148,7 +148,6 @@ public class Movement_Normal : MonoBehaviour
     {
         isPaused = !isPaused;
         PauseMenu.gameObject.SetActive(isPaused);
-        //CanMove = !isPaused;
         if (isPaused)
         {
             controls.SwitchCurrentActionMap("PauseMenu");
@@ -177,6 +176,11 @@ public class Movement_Normal : MonoBehaviour
             m_Anim.SetTrigger("OnJump");
         }
         
+    }
+
+    void OnQuit()
+    {
+        Application.Quit();
     }
 
     void OnRotateCamera(InputValue value)
