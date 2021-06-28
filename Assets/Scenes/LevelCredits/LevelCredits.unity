@@ -12872,7 +12872,7 @@ Animator:
   m_GameObject: {fileID: 1560002021}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 02478451bb681d741815ae4c87dd2d3c, type: 2}
+  m_Controller: {fileID: 9100000, guid: 52536fa2e730b7e40bb83d46dc58f012, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -15211,12 +15211,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Brought to you by...\n\n\n\n\nProgramming:\n\n        Nerys Thamm             
-    Stefan Petrie\n\n\nArt and Assets:\n\n        Matthew Bland             Troy
-    Coker"
+  m_text: "Brought to you by...\n\n\nProgramming:\n\n      Nerys Thamm         Stefan
+    Petrie\n\nArt and Assets:\n\n      Matthew Bland        Troy Coker"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8b18a8c2147d77140be5493779e65fa3, type: 2}
+  m_sharedMaterial: {fileID: -3768292308215432551, guid: 8b18a8c2147d77140be5493779e65fa3,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15240,13 +15240,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
