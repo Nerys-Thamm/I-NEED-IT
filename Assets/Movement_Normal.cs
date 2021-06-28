@@ -85,12 +85,18 @@ public class Movement_Normal : MonoBehaviour
     public AudioClip FirstPickupAudio;
     public bool FirstPickup;
 
-
+    [Header("Pause Menu")]
+    public bool isPaused = false;
+    public Canvas PauseMenu;
+    public PlayerInput controls;
     public bool AnimationStartOveride;
+    public bool CinematicMode = false;
 
     // Awake to Setup the State Machine
     private void Awake()
     {
+        controls = GetComponent<PlayerInput>();
+
         PersistentData = FindObjectOfType<PersistentSceneData>();
 
         if (PersistentData == null)
@@ -105,7 +111,8 @@ public class Movement_Normal : MonoBehaviour
         HighParticles.SetActive(false);
 
         Cam = UnityEngine.Camera.main;
-
+        //PauseMenu.worldCamera = Cam;
+        PauseMenu.worldCamera = Cam;
         // Creates the State Machine
         StateMachine = new DrugStateMachine();
 
@@ -138,18 +145,44 @@ public class Movement_Normal : MonoBehaviour
     }
 
 
+    void OnPause()
+    {
+        isPaused = !isPaused;
+        PauseMenu.gameObject.SetActive(isPaused);
+        if (isPaused)
+        {
+            controls.SwitchCurrentActionMap("PauseMenu");
+        }
+        else
+        {
+            controls.SwitchCurrentActionMap("Movement");
+        }
+    }
+
     void OnMove(InputValue value)
     {
+        if (CinematicMode)
+        {
+            return;
+        }
         moveVal = value.Get<Vector2>();
     }
 
     void OnSprint(InputValue value)
     {
+        if (CinematicMode)
+        {
+            return;
+        }
         m_SprintInput = value.Get<float>();
     }
 
     void OnJump()
     {
+        if (CinematicMode)
+        {
+            return;
+        }
         if (m_Controller.isGrounded && CanMove)
         {
             m_CurrentJumpDuration = m_JumpDuration;
@@ -158,14 +191,28 @@ public class Movement_Normal : MonoBehaviour
         
     }
 
+    void OnQuit()
+    {
+        Application.Quit();
+    }
+
     void OnRotateCamera(InputValue value)
     {
+        if (CinematicMode)
+        {
+            return;
+        }
         cameraangledelta = value.Get<float>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (CinematicMode)
+        {
+            moveVal = new Vector2(0.1f, 0.5f);
+            CanMove = true;
+        }
         if (AnimationStartOveride)
         {
             m_Anim.SetTrigger("AnimOverride");
@@ -295,6 +342,7 @@ public class Movement_Normal : MonoBehaviour
         this.GetComponent<CapsuleCollider>().enabled = false;
         m_Controller.enabled = false;
         GameObject obj = Instantiate(DeathPrefab, transform.position, m_CharModel.transform.rotation);
+        srcAudio.volume = 1.0f;
         srcAudio.PlayOneShot(DeathAudio);
 
         StartCoroutine(DelayRespawn(5.0f, obj));
