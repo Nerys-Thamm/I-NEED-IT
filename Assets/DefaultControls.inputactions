@@ -784,7 +784,7 @@
                     "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Menu",
+                    "groups": "Menu;NormalControlScheme",
                     "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
