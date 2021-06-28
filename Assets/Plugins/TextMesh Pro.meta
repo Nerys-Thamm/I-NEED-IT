@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Plugins/TextMesh Pro.meta
 guid: f54d1bd14bd3ca042bd867b519fee8cc
 folderAsset: yes
 DefaultImporter:
+=======
+guid: e9117d4a56d4cf1419b26980336a3d6d
+PrefabImporter:
+>>>>>>> main:Assets/Environment/Ruins/Glyph.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
