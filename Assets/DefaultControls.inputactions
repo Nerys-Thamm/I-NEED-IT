@@ -56,7 +56,7 @@
                 {
                     "name": "Pause",
                     "type": "Button",
-                    "id": "ecaae554-0ff0-4f98-9ef8-7fd5f4253b42",
+                    "id": "e637d394-b78c-40b8-858f-754235cdf0c6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -362,7 +362,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a7fc3672-4fe1-4d6a-a183-96b86e314ccd",
+                    "id": "daf860f4-6c81-4bc5-9515-ab101457c929",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
@@ -373,7 +373,7 @@
                 },
                 {
                     "name": "",
-                    "id": "a11a4123-58ac-4b6e-bd41-b905da028eb6",
+                    "id": "fd92dce4-3e40-4059-81d3-6666e55bd670",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
@@ -635,6 +635,44 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "PauseMenu",
+            "id": "fcf278a3-9be5-45b9-9ac7-bb771935b1b8",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "61a2af08-cc45-46ab-805e-90ecba8bae5f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "053dab16-ef4c-4972-96d2-0cf035c8dc4c",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PauseMenu;NormalControlScheme",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3bce327-b2a7-415a-89ef-ad22d34ec986",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PauseMenu;NormalControlScheme",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
@@ -669,6 +707,11 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "PauseMenu",
+            "bindingGroup": "PauseMenu",
+            "devices": []
         }
     ]
 }
