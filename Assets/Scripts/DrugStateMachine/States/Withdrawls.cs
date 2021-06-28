@@ -11,6 +11,7 @@ public class Withdrawls : IState
     PersistentSceneData PersistentData;
     public AudioSource Audio;
     public AudioClip WithdrawalAudio;
+    public AudioClip FirstPickup;
 
     // The Movement Speed increase/Decrease that the Drug State Gives
     private float DefaultMovement;
@@ -38,11 +39,15 @@ public class Withdrawls : IState
     Light DirectionalLight;
     float DefaultIntensity;
 
+    bool DebugAudio;
+
     // Constructor that sets all the variables
-    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, AudioSource source, AudioClip clip, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
+    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, AudioSource source, AudioClip clip, AudioClip Clip2, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
     {
         PersistentData = TimesPickedup;
         DrugPickedUp = TimesPickedup.GetDrugs();
+
+        DebugAudio = DrugPickedUp == 0 ? true : false;
 
         Audio = source;
         WithdrawalAudio = clip;
@@ -71,6 +76,10 @@ public class Withdrawls : IState
 
     public void OnEnter()
     {
+        if (DrugPickedUp == 0)
+        {
+            DelayAudio();
+        }
         
         DrugPickedUp = PersistentData.GetDrugs();
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
@@ -129,5 +138,12 @@ public class Withdrawls : IState
     public bool CanSprint()
     {
         return false;
+    }
+
+    IEnumerator DelayAudio()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        Audio.PlayOneShot(FirstPickup, 0.5f);
     }
 }

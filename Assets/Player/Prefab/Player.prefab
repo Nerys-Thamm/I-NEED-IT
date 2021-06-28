@@ -789,6 +789,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   DirectionalLight: {fileID: 0}
   WithdrawalAudio: {fileID: 8300000, guid: 69284ebc5876822458aa648d8a529e28, type: 3}
+  FirstWithdrawal: {fileID: 8300000, guid: 6a9b83208ccf3174485e56a2d0d1ed17, type: 3}
   pickedUp: 0
   drugManager: {fileID: 3856822372902704597}
   DrugsPickedUp: 0
