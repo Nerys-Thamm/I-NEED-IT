@@ -150,9 +150,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Paused
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7cb9ae4f34b670a4bae3d147515f92ab, type: 2}
-  m_sharedMaterial: {fileID: 5718118108644429588, guid: 7cb9ae4f34b670a4bae3d147515f92ab,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8b18a8c2147d77140be5493779e65fa3, type: 2}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -215,7 +214,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &3154901979618284009
@@ -659,9 +658,8 @@ MonoBehaviour:
 
     Q - Quit'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7cb9ae4f34b670a4bae3d147515f92ab, type: 2}
-  m_sharedMaterial: {fileID: 5718118108644429588, guid: 7cb9ae4f34b670a4bae3d147515f92ab,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8b18a8c2147d77140be5493779e65fa3, type: 2}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -724,7 +722,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4732648297271051553
@@ -809,9 +807,8 @@ MonoBehaviour:
     Y
     - Quit'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 7cb9ae4f34b670a4bae3d147515f92ab, type: 2}
-  m_sharedMaterial: {fileID: 5718118108644429588, guid: 7cb9ae4f34b670a4bae3d147515f92ab,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8b18a8c2147d77140be5493779e65fa3, type: 2}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -874,7 +871,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6440139309267723107
