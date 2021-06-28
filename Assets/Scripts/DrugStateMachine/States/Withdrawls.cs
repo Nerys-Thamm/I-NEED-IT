@@ -10,6 +10,7 @@ public class Withdrawls : IState
     public int DrugPickedUp;
     PersistentSceneData PersistentData;
     public AudioSource Audio;
+    public AudioSource Audio2;
     public AudioClip WithdrawalAudio;
     public AudioClip FirstPickup;
 
@@ -41,8 +42,11 @@ public class Withdrawls : IState
 
     bool DebugAudio;
 
+    float Timer = 1.5f;
+    float time = 0.0f;
+
     // Constructor that sets all the variables
-    public Withdrawls( AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, AudioSource source, AudioClip clip, AudioClip Clip2, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
+    public Withdrawls(AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, AudioSource source, AudioClip clip, AudioSource source2, AudioClip Clip2, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
     {
         PersistentData = TimesPickedup;
         DrugPickedUp = TimesPickedup.GetDrugs();
@@ -50,7 +54,9 @@ public class Withdrawls : IState
         DebugAudio = DrugPickedUp == 0 ? true : false;
 
         Audio = source;
+        Audio2 = source2;
         WithdrawalAudio = clip;
+        FirstPickup = Clip2;
 
         // Apply The Movement Values
         DefaultMovement = defaultMovement;
@@ -76,10 +82,7 @@ public class Withdrawls : IState
 
     public void OnEnter()
     {
-        if (DrugPickedUp == 0)
-        {
-            DelayAudio();
-        }
+        Debug.LogError(DebugAudio);
         
         DrugPickedUp = PersistentData.GetDrugs();
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
@@ -112,6 +115,17 @@ public class Withdrawls : IState
 
     public void OnTick()
     {
+        if (DebugAudio)
+        {
+            time += Time.deltaTime;
+            if (time > Timer)
+            {
+                Debug.Log("rawrxd");
+                Audio2.volume = 1.0f;
+                Audio2.PlayOneShot(FirstPickup, 1.0f);
+                DebugAudio = false;
+            }
+        }
     }
 
     public float getMovementMultiplier()
@@ -138,12 +152,5 @@ public class Withdrawls : IState
     public bool CanSprint()
     {
         return false;
-    }
-
-    IEnumerator DelayAudio()
-    {
-        yield return new WaitForSeconds(1.0f);
-
-        Audio.PlayOneShot(FirstPickup, 0.5f);
     }
 }
