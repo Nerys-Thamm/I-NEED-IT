@@ -134,8 +134,6 @@ public class Movement_Normal : MonoBehaviour
 
 
         m_Anim.SetBool("IsGrounded", true);
-
-        
     }
 
 
