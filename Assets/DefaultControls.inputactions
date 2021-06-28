@@ -404,7 +404,7 @@
                 {
                     "name": "",
                     "id": "c4ef33c1-1fc8-4381-8044-b4e41749555c",
-                    "path": "*/{Back}",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "NormalControlScheme",
