@@ -85,13 +85,18 @@ public class Movement_Normal : MonoBehaviour
     public AudioClip FirstPickupAudio;
     public bool FirstPickup;
 
-
+    [Header("Pause Menu")]
+    public bool isPaused = false;
+    public Canvas PauseMenu;
+    public PlayerInput controls;
     public bool AnimationStartOveride;
     public bool CinematicMode = false;
 
     // Awake to Setup the State Machine
     private void Awake()
     {
+        controls = GetComponent<PlayerInput>();
+
         PersistentData = FindObjectOfType<PersistentSceneData>();
 
         if (PersistentData == null)
@@ -106,7 +111,8 @@ public class Movement_Normal : MonoBehaviour
         HighParticles.SetActive(false);
 
         Cam = UnityEngine.Camera.main;
-
+        //PauseMenu.worldCamera = Cam;
+        PauseMenu.worldCamera = Cam;
         // Creates the State Machine
         StateMachine = new DrugStateMachine();
 
@@ -139,6 +145,20 @@ public class Movement_Normal : MonoBehaviour
     }
 
 
+    void OnPause()
+    {
+        isPaused = !isPaused;
+        PauseMenu.gameObject.SetActive(isPaused);
+        if (isPaused)
+        {
+            controls.SwitchCurrentActionMap("PauseMenu");
+        }
+        else
+        {
+            controls.SwitchCurrentActionMap("Movement");
+        }
+    }
+
     void OnMove(InputValue value)
     {
         if (CinematicMode)
@@ -169,6 +189,11 @@ public class Movement_Normal : MonoBehaviour
             m_Anim.SetTrigger("OnJump");
         }
         
+    }
+
+    void OnQuit()
+    {
+        Application.Quit();
     }
 
     void OnRotateCamera(InputValue value)
