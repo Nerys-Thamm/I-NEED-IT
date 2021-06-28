@@ -52,6 +52,14 @@
                     "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "ecaae554-0ff0-4f98-9ef8-7fd5f4253b42",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -349,6 +357,28 @@
                     "processors": "",
                     "groups": "NormalControlScheme",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7fc3672-4fe1-4d6a-a183-96b86e314ccd",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a11a4123-58ac-4b6e-bd41-b905da028eb6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "NormalControlScheme",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

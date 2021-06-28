@@ -64,12 +64,14 @@ public class Movement_Normal : MonoBehaviour
     public float HighMovemnetMultiplier = 2.0f;
     public float HighDuration = 10.0f;
     public GameObject HighParticles;
+    public AudioClip HighAudio;
     [Header("Withdrawl Setup: ")]
     public float WithdrawlMinMovement = 0.5f;
     public float WithdrawlMaxMovement = 1.0f;
     public AnimationCurve WithdrawlRate = AnimationCurve.Linear(0.0f, 1.0f, 10.0f, 0.5f);
     public Light DirectionalLight;
     public AudioClip WithdrawalAudio;
+    public AudioClip FirstWithdrawal;
 
     [Header("Pick Up Drug [Testing Purposes]")]
     public bool pickedUp = false;
@@ -109,8 +111,8 @@ public class Movement_Normal : MonoBehaviour
 
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
-        m_highState = new High(Cam, DirectionalLight, HighParticles, HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
+        m_highState = new High(Cam, DirectionalLight, HighParticles, srcAudio, HighAudio, HighMovemnetMultiplier, HighDuration);
+        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, Audio, FirstWithdrawal, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());
@@ -133,8 +135,6 @@ public class Movement_Normal : MonoBehaviour
 
 
         m_Anim.SetBool("IsGrounded", true);
-
-        
     }
 
 
@@ -263,6 +263,7 @@ public class Movement_Normal : MonoBehaviour
             {
                 if (FirstPickupAudio != null)
                 {
+                    Audio.volume = 1.0f;
                     Audio.clip = FirstPickupAudio;
                     Audio.PlayDelayed(1.5f);
                     
@@ -314,6 +315,7 @@ public class Movement_Normal : MonoBehaviour
         Object.Destroy(DeathPrefab);
         m_CharModel.SetActive(true);
 
+        forceEndDrug = false;
         HasDied = false;
         CanMove = true;
     }
