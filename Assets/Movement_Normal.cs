@@ -315,6 +315,7 @@ public class Movement_Normal : MonoBehaviour
         Object.Destroy(DeathPrefab);
         m_CharModel.SetActive(true);
 
+        forceEndDrug = false;
         HasDied = false;
         CanMove = true;
     }
