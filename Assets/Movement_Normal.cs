@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.HighDefinition;
 
 public class Movement_Normal : MonoBehaviour
 {
@@ -93,6 +95,11 @@ public class Movement_Normal : MonoBehaviour
     public bool AnimationStartOveride;
     public bool CinematicMode = false;
 
+    [Header("LEVEL3")]
+    public bool Level3;
+    public Volume WaterVolume;
+    public Volume MazeVolume;
+
     // Awake to Setup the State Machine
     private void Awake()
     {
@@ -120,7 +127,14 @@ public class Movement_Normal : MonoBehaviour
         // Creates the States and stores the variable information
         m_soberState = new Sober(SoberMovementMultiplier);
         m_highState = new High(Cam, DirectionalLight, HighParticles, srcAudio, HighAudio, HighMovemnetMultiplier, HighDuration);
-        m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, Audio, FirstWithdrawal, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement);
+        if (Level3)
+        {
+            m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, Audio, FirstWithdrawal, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement, WaterVolume, MazeVolume);
+        }
+        else
+        {
+            m_withdrawlState = new Withdrawls(WithdrawlRate, Cam, DirectionalLight, PersistentData, srcAudio, WithdrawalAudio, Audio, FirstWithdrawal, speed_mult, WithdrawlMinMovement, WithdrawlMaxMovement, null, null);
+        }
 
         // Add the Transition From High to Withdrawl
         StateMachine.AddTransition(m_highState, m_withdrawlState, () => m_highState.NoLongerHigh());

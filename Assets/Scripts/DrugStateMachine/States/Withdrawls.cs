@@ -47,8 +47,26 @@ public class Withdrawls : IState
     float Timer = 1.5f;
     float time = 0.0f;
 
+    // Level 3 Shit
+    bool Level3 = false;
+
+    Volume WaterVolume;
+    VolumeProfile waterProfile;
+    Vignette WaterVignette;
+    float WaterDefaultVignette;
+    ColorAdjustments WaterColors;
+    float WaterDefaultSaturation;
+
+    // Level 3 maze
+    Volume mazeVolume;
+    VolumeProfile mazeProfile;
+    Vignette MazeVignette;
+    float MazeDefaultVignette;
+    ColorAdjustments MazeColors;
+    float MazeDefaultSaturation;
+
     // Constructor that sets all the variables
-    public Withdrawls(AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, AudioSource source, AudioClip clip, AudioSource source2, AudioClip Clip2, float defaultMovement, float minMove, float maxMove)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
+    public Withdrawls(AnimationCurve Rate, Camera playerCam, Light DirectionalLight, PersistentSceneData TimesPickedup, AudioSource source, AudioClip clip, AudioSource source2, AudioClip Clip2, float defaultMovement, float minMove, float maxMove, Volume waterVolume, Volume MazeVolume)      //float minMultiplier, float maxMultiplier, AnimationCurve Rate, float minTime, float maxTime, Camera playerCam)
     {
         PersistentData = TimesPickedup;
         DrugPickedUp = TimesPickedup.GetDrugs();
@@ -85,12 +103,39 @@ public class Withdrawls : IState
 
         VignetteCurve = AnimationCurve.Linear(0.0f, DefaultVignette, 1.0f, 0.6f);
 
-        
+        if (waterVolume != null)
+        {
+            WaterVolume = waterVolume;
+            waterProfile = WaterVolume.profile;
+
+            // Set the Water Vignette
+            waterProfile.TryGet<Vignette>(out WaterVignette);
+            WaterDefaultVignette = WaterVignette.intensity.value;
+
+            waterProfile.TryGet<ColorAdjustments>(out WaterColors);
+            WaterDefaultSaturation = WaterColors.saturation.value;
+
+            Level3 = true;
+        }
+
+        if (MazeVolume != null)
+        {
+            mazeVolume = MazeVolume;
+            mazeProfile = mazeVolume.profile;
+
+            // Set Vignette
+            mazeProfile.TryGet<Vignette>(out MazeVignette);
+            MazeDefaultVignette = MazeVignette.intensity.value;
+
+            mazeProfile.TryGet<ColorAdjustments>(out MazeColors);
+            MazeDefaultSaturation = MazeColors.saturation.value;
+            Level3 = true;
+        }
     }
 
     public void OnEnter()
     {
-        Debug.LogError(DebugAudio);
+        //Debug.LogError(DebugAudio);
         
         DrugPickedUp = PersistentData.GetDrugs();
         float IntensityValue = RateOfWithdrawal.Evaluate(DrugPickedUp);
@@ -108,7 +153,19 @@ public class Withdrawls : IState
         DirectionalLight.intensity = Mathf.Clamp(DefaultIntensity * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp)), 1000, DefaultIntensity);
 
         vignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), DefaultVignette, 0.8f);
-        
+
+        if (Level3)
+        {
+            WaterColors.saturation.value = Mathf.Lerp(-30, WaterDefaultSaturation, IntensityValue);
+
+            WaterVignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), WaterDefaultVignette, 0.8f);
+
+            MazeColors.saturation.value = Mathf.Lerp(-30, MazeDefaultSaturation, IntensityValue);
+
+            MazeVignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), MazeDefaultVignette, 0.8f);
+
+        }
+
         CameraVolume.sharedProfile = profile;
         Debug.Log("STATE: WITHDRAWL");
     }
@@ -121,6 +178,15 @@ public class Withdrawls : IState
         vignette.intensity.value = DefaultVignette;
         DirectionalLight.intensity = DefaultIntensity;
         colorAdjustments.saturation.value = DefaultSaturation;
+
+        if (Level3)
+        {
+            WaterColors.saturation.value = WaterDefaultSaturation;
+            WaterVignette.intensity.value = WaterDefaultVignette;
+
+            MazeColors.saturation.value = MazeDefaultSaturation;
+            MazeVignette.intensity.value = MazeDefaultSaturation;
+        }
     }
 
     public void OnTick()
