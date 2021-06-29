@@ -33,8 +33,10 @@ public class Withdrawls : IState
     // Vignette
     float DefaultVignette;
     Vignette vignette;
-    
+
     // Saturation
+    float DefaultSaturation; // 11,8
+    ColorAdjustments colorAdjustments;
 
     // Directional Light
     Light DirectionalLight;
@@ -75,9 +77,15 @@ public class Withdrawls : IState
         profile = CameraVolume.profile;
         profile.TryGet<Vignette>(out vignette);
 
+        profile.TryGet<ColorAdjustments>(out colorAdjustments);
+
+        DefaultSaturation = colorAdjustments.saturation.value;
+
         DefaultVignette = vignette.intensity.value;
 
         VignetteCurve = AnimationCurve.Linear(0.0f, DefaultVignette, 1.0f, 0.6f);
+
+        
     }
 
     public void OnEnter()
@@ -95,10 +103,11 @@ public class Withdrawls : IState
         Debug.Log(DrugPickedUp);
         m_MovementSpeedMultiplier = Mathf.Clamp((1 - RateOfWithdrawal.Evaluate(DrugPickedUp) / 2), minMovementMultiplier, maxMovemnentMultiplier);
 
+        colorAdjustments.saturation.value = Mathf.Lerp(-30, DefaultSaturation, IntensityValue);
 
         DirectionalLight.intensity = Mathf.Clamp(DefaultIntensity * (1 - RateOfWithdrawal.Evaluate(DrugPickedUp)), 1000, DefaultIntensity);
 
-        vignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), DefaultVignette, 0.6f);
+        vignette.intensity.value = Mathf.Clamp(VignetteCurve.Evaluate(IntensityValue), DefaultVignette, 0.8f);
         
         CameraVolume.sharedProfile = profile;
         Debug.Log("STATE: WITHDRAWL");
@@ -110,7 +119,8 @@ public class Withdrawls : IState
         Audio.volume = 0.181f;
         Audio.Stop();
         vignette.intensity.value = DefaultVignette;
-        DirectionalLight.intensity = DefaultIntensity; 
+        DirectionalLight.intensity = DefaultIntensity;
+        colorAdjustments.saturation.value = DefaultSaturation;
     }
 
     public void OnTick()
