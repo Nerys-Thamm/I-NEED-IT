@@ -10,6 +10,7 @@ public class CameraManager : MonoBehaviour
     public Camera Camera;
 
     public Volume CameraVolume;
+    
 
     [Header("Camera Volumetric Settings:")]
     VolumeProfile OriginalProfile;
